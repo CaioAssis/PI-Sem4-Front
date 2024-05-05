@@ -1,14 +1,14 @@
 import { Input, Text } from '@chakra-ui/react';
 
-export function CreateUser(){
-  return(
+export function CreateUser() {
+  return (
     <>
-    <Text>teste</Text>
-    <Input></Input>
-    <Text>teste</Text>
-    <Input></Input>
-    <Text>teste</Text>
-    <Input></Input>
+      <Text>teste</Text>
+      <Input></Input>
+      <Text>teste</Text>
+      <Input></Input>
+      <Text>teste</Text>
+      <Input></Input>
     </>
   )
 }

@@ -5,14 +5,14 @@ import ModalButton from "../../components/modal-button"
 import UpdateUser from "../../components/modal/funcionario/update-user";
 import CreateModal from "../../components/modal/create-modal";
 
-function AdmUser(){
+function AdmUser() {
     const [createOpen, setCreateOpen] = useState(false);
     const [updateOpen, setUpdateOpen] = useState(false)
 
     const handleOpenModalCreate = () => {
         setCreateOpen(true)
     }
-  
+
     const handleCloseModalCreate = () => {
         setCreateOpen(false)
     }
@@ -20,25 +20,25 @@ function AdmUser(){
     const handleOpenModalUpdate = () => {
         setUpdateOpen(true)
     }
-  
+
     const handleCloseModalUpdate = () => {
         setUpdateOpen(false)
     }
-  
+
     return (
-      <Layout>
+        <Layout>
 
-        <ModalButton label='Criar Usuário' onClick={handleOpenModalCreate} />
-        <CreateModal label='Criar Usuário'isOpen={createOpen} onClose={handleCloseModalCreate}>
-            <CreateUser/>
-        </CreateModal>
+            <ModalButton label='Criar Usuário' onClick={handleOpenModalCreate} />
+            <CreateModal label='Criar Usuário' isOpen={createOpen} onClose={handleCloseModalCreate}>
+                <CreateUser />
+            </CreateModal>
 
-        <ModalButton label='Editar Usuário' onClick={handleOpenModalUpdate} />
-        <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-            <UpdateUser/>
-        </CreateModal>
+            <ModalButton label='Editar Usuário' onClick={handleOpenModalUpdate} />
+            <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
+                <UpdateUser />
+            </CreateModal>
 
-      </Layout>
+        </Layout>
     )
-  }
+}
 export default AdmUser
