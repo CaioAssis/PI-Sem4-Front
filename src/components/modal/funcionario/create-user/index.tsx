@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Input, Spacer, Text } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 
 export function CreateUser() {
