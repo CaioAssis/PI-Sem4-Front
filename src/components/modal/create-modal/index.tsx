@@ -14,8 +14,8 @@ export function CreateModal({ label, isOpen, onClose, children }: ModalProps) {
             size='5xl'
             isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent bg='#49C855'>
-                <ModalHeader textAlign='center' color='white'>{label}</ModalHeader>
+            <ModalContent bg='white'>
+                <ModalHeader textAlign='center' color='black'>{label}</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     {children}
