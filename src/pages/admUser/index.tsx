@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Layout from "../../components/layout"
 import CreateUser from "../../components/modal/funcionario/create-user"
-import ModalButton from "../../components/modal-button"
+import ModalButton from "../../components/modal/modal-button"
 import UpdateUser from "../../components/modal/funcionario/update-user";
 import CreateModal from "../../components/modal/create-modal";
 
