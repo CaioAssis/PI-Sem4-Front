@@ -26,6 +26,7 @@ export function UpdateUser() {
       <Input 
       type='text'
       value={inputValue}
+      w='80%'
       onChange={
         (event) => {
         setInputValue(event.target.value);

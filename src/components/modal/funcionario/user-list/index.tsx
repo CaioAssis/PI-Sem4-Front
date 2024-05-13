@@ -2,11 +2,11 @@ import { Box, Button, Text } from "@chakra-ui/react"
 import { Funcionario } from "../../../interfaces/funcionario"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
+import UpdateUserForm from "../update-user-form"
 
 interface UserProps {
     user: Funcionario
 }
-////////////NAO FUNCIONA AINDA
 export default function UserList({ user }: UserProps) {
 
 
@@ -28,7 +28,7 @@ export default function UserList({ user }: UserProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                yes
+                <UpdateUserForm user={user}/>
             </CreateModal>
         </Box>
     )
