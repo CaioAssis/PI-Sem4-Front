@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Funcionario } from "../../../interfaces/funcionario"
 
 export function UpdateUser() {
+
   const [user, setUser] = useState<Funcionario[]>([
     {id: 1, nome: 'caio', matricula: '123456', contato: 'teste@teste', usuario: 'teste', senha: '123', role: 'ger'},
     {id: 2, nome: 'carlos', matricula: '111111', contato: 'teste@gmail', usuario: 'testancio', senha: '123', role: 'fun'},

@@ -28,7 +28,7 @@ export default function UserList({ user }: UserProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateUserForm user={user}/>
+                <UpdateUserForm user={user} onClose={handleCloseModalUpdate}/>
             </CreateModal>
         </Box>
     )

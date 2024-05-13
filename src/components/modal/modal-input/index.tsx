@@ -3,10 +3,12 @@ import { Input, Text } from "@chakra-ui/react"
 interface InputProps{
     title : string
     placeholder: string
-    value?: string
+    defaultValue?: string
+    ref?: string
+    onChange?: any
 }
 
-function ModalInput({ title, placeholder, value }: InputProps){
+function ModalInput({ title, placeholder, defaultValue, ref, onChange}: InputProps){
     return(
         <>
             <Text fontSize='20'>{title}</Text>
@@ -14,7 +16,9 @@ function ModalInput({ title, placeholder, value }: InputProps){
             rounded={15}
             bg='white' 
             placeholder={placeholder}
-            value={value}/>
+            defaultValue={defaultValue}
+            ref={ref}
+            onChange={onChange}/>
         </>
     )
 }
