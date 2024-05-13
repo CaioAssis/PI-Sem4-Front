@@ -6,8 +6,9 @@ import UpdateUser from "../../components/modal/funcionario/update-user";
 import CreateModal from "../../components/modal/create-modal";
 
 function AdmUser() {
-    const [createOpen, setCreateOpen] = useState(false);
+    const [createOpen, setCreateOpen] = useState(false)
     const [updateOpen, setUpdateOpen] = useState(false)
+    const [updateShow, setUpdateShow] = useState(false)
 
     const handleOpenModalCreate = () => {
         setCreateOpen(true)
@@ -25,6 +26,10 @@ function AdmUser() {
         setUpdateOpen(false)
     }
 
+    const handleUpdateShow = () => {
+        setUpdateShow(!updateShow);
+      };
+
     return (
         <Layout>
 
@@ -33,9 +38,9 @@ function AdmUser() {
                 <CreateUser />
             </CreateModal>
 
-            <ModalButton label='Editar Usuário' onClick={handleOpenModalUpdate} />
+            <ModalButton label='Editar Usuário' onClick={handleUpdateShow}/>
+            {updateShow && <UpdateUser/> }
             <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateUser />
             </CreateModal>
 
         </Layout>
