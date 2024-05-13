@@ -35,7 +35,7 @@ function AdmUser() {
 
             <ModalButton label='Criar Usuário' onClick={handleOpenModalCreate} />
             <CreateModal label='Criar Usuário' isOpen={createOpen} onClose={handleCloseModalCreate}>
-                <CreateUser />
+                <CreateUser onClose={handleCloseModalCreate}/>
             </CreateModal>
 
             <ModalButton label='Editar Usuário' onClick={handleUpdateShow}/>

@@ -22,9 +22,7 @@ export function CreateModal({ label, isOpen, onClose, children }: ModalProps) {
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button colorScheme="gray" mr={3} onClick={onClose}>
-                        Cancelar
-                    </Button>
+                    
                 </ModalFooter>
             </ModalContent>
         </Modal>

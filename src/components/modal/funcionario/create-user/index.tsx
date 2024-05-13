@@ -1,7 +1,12 @@
-import { Divider, Grid, GridItem, Select, Text } from '@chakra-ui/react';
+import { Button, Divider, Grid, GridItem, Select, Text } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
+import CreateModal from '../../create-modal';
 
-export function CreateUser() {
+interface Props{
+  onClose: () => void
+}
+
+export function CreateUser( { onClose }: Props) {
   return (
     <>
       <Grid templateColumns='repeat(5, 1fr)' gap={3}>
@@ -32,6 +37,14 @@ export function CreateUser() {
             <option value='fun'>Funcionário Deere</option>
             <option value='ter'>Funcionário Concessionária</option>
           </Select>
+        </GridItem>
+
+        <GridItem colSpan={3} justifySelf='end'>
+          <Button>Criar Usuário</Button>
+        </GridItem>
+
+        <GridItem colSpan={2} justifySelf='end'>
+          <Button onClick={onClose}>Cancelar</Button>
         </GridItem>
 
       </Grid>

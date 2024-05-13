@@ -26,6 +26,7 @@ export function UpdateUser() {
       <Input 
       type='text'
       value={inputValue}
+      bg='white'
       w='80%'
       onChange={
         (event) => {
