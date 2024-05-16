@@ -33,7 +33,7 @@ export function UpdateUser() {
         (event) => {
         setInputValue(event.target.value);
       }}
-      placeholder='Digite o número do usuário' />
+      placeholder='Digite o nome do usuário' />
 
       {filtro.map((user) => (
         <UserList key={user.id} user={user}/>

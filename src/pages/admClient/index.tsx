@@ -1,11 +1,11 @@
 import { useState } from "react"
 import Layout from "../../components/layout"
-import CreateUser from "../../components/modal/funcionario/create-user"
+import CreateClient from "../../components/modal/cliente/create-client"
 import ModalButton from "../../components/modal/modal-button"
-import UpdateUser from "../../components/modal/funcionario/update-user";
+import UpdateClient from "../../components/modal/cliente/update-client";
 import CreateModal from "../../components/modal/create-modal";
 
-function AdmUser() {
+function AdmClient() {
     const [createOpen, setCreateOpen] = useState(false)
     const [updateOpen, setUpdateOpen] = useState(false)
     const [updateShow, setUpdateShow] = useState(false)
@@ -33,17 +33,17 @@ function AdmUser() {
     return (
         <Layout>
 
-            <ModalButton label='Criar Usuário' onClick={handleOpenModalCreate} />
-            <CreateModal label='Criar Usuário' isOpen={createOpen} onClose={handleCloseModalCreate}>
-                <CreateUser onClose={handleCloseModalCreate}/>
+            <ModalButton label='Criar Cliente' onClick={handleOpenModalCreate} />
+            <CreateModal label='Criar Cliente' isOpen={createOpen} onClose={handleCloseModalCreate}>
+                <CreateClient onClose={handleCloseModalCreate}/>
             </CreateModal>
 
-            <ModalButton label='Editar Usuário' onClick={handleUpdateShow}/>
-            {updateShow && <UpdateUser/> }
-            <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate} children={undefined}>{/*Precisa colocar o childrem para não dar erro, mesmo que não tenha nada*/}
+            <ModalButton label='Editar Cliente' onClick={handleUpdateShow}/>
+            {updateShow && <UpdateClient/> }
+            <CreateModal label='Editar Cliente' isOpen={updateOpen} onClose={handleCloseModalUpdate} children={undefined}>{/*Precisa colocar o childrem para não dar erro, mesmo que não tenha nada*/}
             </CreateModal>
 
         </Layout>
     )
 }
-export default AdmUser
+export default AdmClient
