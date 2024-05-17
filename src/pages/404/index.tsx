@@ -7,7 +7,7 @@ function NotFound() {
                 404
             </Text>
             <Text margin='5px' fontSize='25' textAlign='left'>
-                Página não Encontrada
+                Página Não Encontrada
             </Text>
         </>
     )
