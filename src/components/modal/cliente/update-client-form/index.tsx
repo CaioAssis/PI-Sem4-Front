@@ -62,7 +62,7 @@ export function UpdateClientForm({ client, onClose }: ClientProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editClient}>Criar Cliente</Button>
+                    <Button onClick={editClient}>Editar Cliente</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

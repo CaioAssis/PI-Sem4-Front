@@ -40,7 +40,8 @@ function AdmUser() {
 
             <ModalButton label='Editar Usuário' onClick={handleUpdateShow}/>
             {updateShow && <UpdateUser/> }
-
+            <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate} children={undefined}>{/*Precisa colocar o childrem para não dar erro, mesmo que não tenha nada*/}
+            </CreateModal>
 
         </Layout>
     )
