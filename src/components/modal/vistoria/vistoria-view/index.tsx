@@ -1,13 +1,13 @@
 import { Vistoria } from "../../../interfaces/vistoria";
-import { Text, Image  } from '@chakra-ui/react';
+import { Text, Image, Box  } from '@chakra-ui/react';
 
 interface ViewProps {
     vistoria: Vistoria
+    ref: any
 }
-function VistoriaView({ vistoria }: ViewProps) {
-
+function VistoriaView({ vistoria, ref }: ViewProps) {
     return (
-        <>
+        <Box ref={ref}>
             <Text> {vistoria.data} - Vistoria {vistoria.id}</Text>
             <Text> {vistoria.status} </Text>
             <Text>-------------------</Text>
@@ -21,7 +21,7 @@ function VistoriaView({ vistoria }: ViewProps) {
                     <Text>-------------</Text>
                 </>
             ))}
-        </>
+        </Box>
     )
 }
 

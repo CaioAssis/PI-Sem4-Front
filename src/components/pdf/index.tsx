@@ -1,17 +1,24 @@
-import React from 'react';
+ import React from 'react';
 import { Box, Button, ChakraProvider } from '@chakra-ui/react';
 import html2pdf from 'html2pdf.js';
+import VistoriaView from '../modal/vistoria/vistoria-view/index';
+import { Vistoria } from '../interfaces/vistoria';
 
-const PdfContent = React.forwardRef<HTMLDivElement>((props, ref) => (
+interface Props {
+  vistoria: Vistoria
+}
+
+const PdfContent = React.forwardRef<HTMLDivElement>(({vistoria}: Props, ref: any) => (
   <Box ref={ref} padding="4" backgroundColor="white" textAlign='start'>
-    <h1>Minha Página PDF</h1>
-    <p>Este é o conteúdo que será transformado em PDF.</p>
+      {console.log(vistoria.id)}
+    <VistoriaView vistoria={vistoria} />
   </Box>
 ));
 
-const CreatePdf: React.FC = () => {
+const CreatePdf: React.FC = ({vistoria}:Props) => {
   const contentRef = React.useRef<HTMLDivElement>(null);
-
+  const vist = vistoria
+  console.log(vist.id)
   const handleDownloadPdf = () => {
     if (contentRef.current) {
       html2pdf()
@@ -32,7 +39,7 @@ const CreatePdf: React.FC = () => {
         <Button onClick={handleDownloadPdf} colorScheme="blue" marginBottom="4">
           Download PDF
         </Button>
-        <PdfContent ref={contentRef} />
+        <VistoriaView vistoria={vistoria} ref={contentRef}/>
       </Box>
     </ChakraProvider>
   );
