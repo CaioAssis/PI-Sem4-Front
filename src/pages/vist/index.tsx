@@ -44,7 +44,7 @@ function Vist() {
 
         <Layout>
             {
-                vist.map((vistoria) => (
+                vist.filter(vist => vist.maquina ==    1    ).map((vistoria) => (
                     <VistoriaList key={vistoria.id} vistoria={vistoria} />
                 ))
             }
