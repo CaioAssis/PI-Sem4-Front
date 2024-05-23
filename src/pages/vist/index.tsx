@@ -5,19 +5,46 @@ import VistoriaList from "../../components/modal/vistoria/vistoria-list"
 
 function Vist() {
     const [vist, setVist] = useState<Vistoria[]>([
-        { id: 1, data: '20/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: 'isso é o que foi escrito na maquina modulo 1/][/isso é o que foi escrito na maquina modulo 2', maquina: 1 },
-        { id: 2, data: '21/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: 'isso é o que foi escrito na maquina modulo 1/][/isso é o que foi escrito na maquina modulo 2', maquina: 1 },
-        { id: 3, data: '22/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: '/][/', maquina: 1 },
-        { id: 4, data: '22/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: '/][/', maquina: 2 },
-        { id: 5, data: '23/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: '/][/', maquina: 2 },
-        { id: 6, data: '23/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: '/][/', maquina: 1 },
-        { id: 7, data: '23/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', texto: 'isso é o que foi escrito na maquina modulo 1/][/isso é o que foi escrito na maquina modulo 2', maquina: 3 }
-    ])
+        {
+            id: 1, data: '20/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', maquina: 1,
+            moduloInspecao: [
+                { id: 1, status: true, descricao: '', imagem: '', moduloDescricao: 1 },
+                { id: 2, status: true, descricao: '', imagem: '', moduloDescricao: 2 },
+                { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 3 }]
+        },
+        {
+            id: 2, data: '21/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'NOK', maquina: 1,
+            moduloInspecao: [
+                { id: 1, status: true, descricao: '', imagem: '', moduloDescricao: 1 },
+                { id: 2, status: false, descricao: 'arranhão na porta', imagem: 'https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2022/08/fatec-identidade.jpg', moduloDescricao: 2 },
+                { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 3 }]
+        },
+        {
+            id: 3, data: '21/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'OK', maquina: 2,
+            moduloInspecao: [
+                { id: 1, status: true, descricao: '', imagem: '', moduloDescricao: 1 },
+                { id: 2, status: true, descricao: '', imagem: '', moduloDescricao: 2 },
+                { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 3 }]
+        },
+        {
+            id: 4, data: '22/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'NOK', maquina: 1,
+            moduloInspecao: [
+                { id: 1, status: true, descricao: '', imagem: '', moduloDescricao: 1 },
+                { id: 2, status: false, descricao: 'arranhão na porta', imagem: 'https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2022/08/fatec-identidade.jpg', moduloDescricao: 2 },
+                { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 4 }]
+        },
+        {
+            id: 5, data: '22/05/2024', anexo: 'urlAnexo/Anexo.pdf', status: 'NOK', maquina: 2,
+            moduloInspecao: [
+                { id: 1, status: true, descricao: '', imagem: '', moduloDescricao: 1 },
+                { id: 2, status: false, descricao: 'pneu furado', imagem: 'https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2022/08/fatec-identidade.jpg', moduloDescricao: 2 },
+                { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 3 }]
+        }])
     return (
 
         <Layout>
             {
-                vist.map((vistoria) => (
+                vist.filter(vist => vist.maquina ==    1    ).map((vistoria) => (
                     <VistoriaList key={vistoria.id} vistoria={vistoria} />
                 ))
             }

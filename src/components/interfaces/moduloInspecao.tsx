@@ -1,8 +1,7 @@
 export interface ModuloInspecao{
     id: number
-    status: string
+    status: boolean
     descricao: string
     imagem: string
-    vistoria: number
     moduloDescricao: number
 }
