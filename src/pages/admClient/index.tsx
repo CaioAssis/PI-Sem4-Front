@@ -40,8 +40,6 @@ function AdmClient() {
 
             <ModalButton label='Editar Cliente' onClick={handleUpdateShow}/>
             {updateShow && <UpdateClient/> }
-            <CreateModal label='Editar Cliente' isOpen={updateOpen} onClose={handleCloseModalUpdate} children={undefined}>{/*Precisa colocar o childrem para não dar erro, mesmo que não tenha nada*/}
-            </CreateModal>
 
         </Layout>
     )
