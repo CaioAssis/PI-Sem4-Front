@@ -4,7 +4,6 @@ import CreatePdf from "../../components/pdf"
 function VistCreate() {
     return (
         <Layout>
-            <CreatePdf />
         </Layout>
     )
 }

@@ -38,7 +38,7 @@ const handleUpdateShow = () => {
         <Box w='80%' p={2} display='flex' gap={5} margin='5px'>
             <ModalButton label={vistoria.data}
                 onClick={ handleOpenModalCreate } />
-            <CreateModal label='PDF' isOpen={createOpen} onClose={handleCloseModalCreate}>
+            <CreateModal label={'Vistoria nº' + vistoria.id} isOpen={createOpen} onClose={handleCloseModalCreate}>
                 <CreatePdf vistoria={vistoria} />
             </CreateModal>
         </Box>
