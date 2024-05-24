@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, ChakraProvider } from '@chakra-ui/react';
+import { Box, Button, ChakraProvider, Text } from '@chakra-ui/react';
 import html2pdf from 'html2pdf.js';
 import VistoriaView from '../modal/vistoria/vistoria-view';
 import { Vistoria } from '../interfaces/vistoria';
@@ -8,9 +8,22 @@ interface Props {
   vistoria: Vistoria;
 }
 
+
 const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria }, ref) => (
   <Box ref={ref} padding="4" backgroundColor="white" textAlign='start'>
-    <VistoriaView vistoria={vistoria} />
+    <Text> {vistoria.data} - Vistoria {vistoria.id}</Text>
+            <Text> {vistoria.status} </Text>
+            <Text>--------//--------</Text>
+            <Text> </Text>
+            {vistoria.moduloInspecao.map(item => (
+                <>
+                    <Text key={item.id}>{item.moduloDescricao}</Text>
+                    <Text>{item.status ? "OK" : "Problema!"}</Text>
+                    <Text>{item.descricao}</Text>
+                    {item.imagem != '' && (<img src={item.imagem} alt="" height="500px" width="500px" />)}
+                    <Text>-------------</Text>
+                </>
+            ))}
   </Box>
 ));
 
