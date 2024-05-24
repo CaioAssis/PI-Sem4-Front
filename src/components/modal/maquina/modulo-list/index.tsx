@@ -1,35 +1,18 @@
-import { Box, Button, Text } from "@chakra-ui/react"
-import { Modulo } from "../../../interfaces/cliente"
+import { Box, Button, Grid, GridItem, Text } from "@chakra-ui/react"
+import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
-import UpdateClientForm from "../update-client-form"
 
-interface ClientProps {
-    client: Cliente
+interface ModuloProps {
+    modulo: ModuloDescricao
+    onClick?: () => void
 }
-export default function ClientList({ client }: ClientProps) {
-
-
-    const [updateOpen, setUpdateOpen] = useState(false)
-    const handleOpenModalUpdate = () => {
-        setUpdateOpen(true)
-    }
-
-    const handleCloseModalUpdate = () => {
-        setUpdateOpen(false)
-    }
-
+const ModuloList: React.FC<ModuloProps> = ({ modulo, onClick }) => {
     return (
-        <Box w='80%' p={2} display='flex' gap={5} margin='5px'>
-            <Button w='100%' bg='lightgray' justifyContent='flex-start'
-                onClick={handleOpenModalUpdate}>
-                <Text alignContent=''>
-                    {client.cpf} - {client.nome}
-                </Text>
-            </Button>
-            <CreateModal label='Editar Cliente' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateClientForm client={client} onClose={handleCloseModalUpdate} />
-            </CreateModal>
+        <Box p={2} display='flex' gap={5} margin='5px' w='95%' bg='lightgray' justifyContent='flex-start' onClick={onClick} cursor="pointer" border="1px solid" borderColor="gray.200" rounded={15} mb={2}>
+            <Text>{modulo.titulo} - {modulo.descricao}</Text>
         </Box>
-    )
-}
+    );
+};
+
+export default ModuloList;

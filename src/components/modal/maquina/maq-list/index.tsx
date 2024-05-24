@@ -2,7 +2,7 @@ import { Box, Button, Text } from "@chakra-ui/react"
 import { Maquina } from "../../../interfaces/maquina"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
-import UpdateClientForm from "../update-client-form"
+// import UpdateClientForm from "../update-client-form"
 
 interface MaqProps {
     maq: Maquina
