@@ -5,6 +5,7 @@ import AdmUser from './pages/admUser'
 import AdmClient from './pages/admClient'
 import Vist from './pages/vist'
 import VistCreate from './pages/vist-create'
+import Maquina from './pages/maquina'
 
 const routes = createBrowserRouter([
   { path: '/', errorElement: <NotFound /> },
@@ -12,7 +13,8 @@ const routes = createBrowserRouter([
   { path: '/admUser', element: <AdmUser /> },
   { path: '/admClient', element: <AdmClient /> },
   { path: '/vistoria', element: <Vist /> },
-  { path: '/initVistoria', element: <VistCreate /> }
+  { path: '/initVistoria', element: <VistCreate /> },
+  { path: '/maquina', element: <Maquina /> }
 ])
 
 export default routes //prof usou router
