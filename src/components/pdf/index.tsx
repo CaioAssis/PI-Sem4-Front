@@ -11,19 +11,7 @@ interface Props {
 
 const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria }, ref) => (
   <Box ref={ref} padding="4" backgroundColor="white" textAlign='start'>
-    <Text> {vistoria.data} - Vistoria {vistoria.id}</Text>
-            <Text> {vistoria.status} </Text>
-            <Text>--------//--------</Text>
-            <Text> </Text>
-            {vistoria.moduloInspecao.map(item => (
-                <>
-                    <Text key={item.id}>{item.moduloDescricao}</Text>
-                    <Text>{item.status ? "OK" : "Problema!"}</Text>
-                    <Text>{item.descricao}</Text>
-                    {item.imagem != '' && (<img src={item.imagem} alt="" height="500px" width="500px" />)}
-                    <Text>-------------</Text>
-                </>
-            ))}
+    <VistoriaView vistoria={vistoria}/>
   </Box>
 ));
 
@@ -37,7 +25,7 @@ const CreatePdf: React.FC<Props> = ({ vistoria }) => {
         .set({
           filename: 'documento.pdf',
           image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
+          html2canvas: { scale: 2, useCORS: true },
           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         })
         .save();
