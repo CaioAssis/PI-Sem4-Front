@@ -1,74 +1,131 @@
-import { Button, Divider, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Button, Divider, Grid, GridItem, Input } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
-import { Cliente } from '../../../interfaces/cliente';
-import { useState } from 'react';
+import { Maquina } from '../../../interfaces/maquina';
+import { useEffect, useState } from 'react';
+import ModuloList from '../modulo-list';
+import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
+import MockModulos from './mock-modulo';
 
-interface ClientProps {
-    client: Cliente
+interface MaquinaProps {
+    maq: Maquina
     onClose: () => void
 }
 
-export function UpdateClientForm({ client, onClose }: ClientProps) {
+export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
 
-    function editClient() {
-        if (nome != '' && cpf != '' && contato != '') {
-            const newClient = {
-                nome: nome,
-                cpf: cpf,
-                contato: contato
+    function editMaq() {
+        if (maq.descricao != '') {
+            const newMaq = {
+                descricao: maq.descricao,
+                modulos: maq.modulos
             }
 
-            console.log(newClient.nome)
+            console.log(newMaq.descricao)
             onClose()
 
         }
         else alert('Os campos precisam estar preenchidos!')
     }
 
-    const [nome, setNome] = useState(client.nome)
-    const [cpf, setCpf] = useState(client.cpf)
-    const [contato, setContato] = useState(client.contato)
+    const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
+        return numbers.map(num => ({
+            id: MockModulos[num-1].id,
+            titulo: MockModulos[num-1].titulo,
+            descricao: MockModulos[num-1].descricao,
+            imagem: MockModulos[num-1].imagem,
+        }));
+    }
+
+    const [formMaq, setFormMaq] = useState({
+        id: maq.id,
+        descricao: maq.descricao,
+        modulos: maq.modulos
+    })
+
+    const [inputValue, setInputValue] = useState('');
+    const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
+    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
+
+    const [modulos, setModulos] = useState<ModuloDescricao[]>(MockModulos)
+
+    useEffect(() => {
+        const filtrados = modulos.filter((item) =>
+            item.titulo.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setFiltro(filtrados);
+    }, [inputValue, modulos]);
+
+    function addModulo(modulo: ModuloDescricao) {
+        if (!adiciona.some((item) => item.id === modulo.id)) {
+            setAdiciona([...adiciona, modulo]);
+        }
+    }
+
+    function removeModulo(modulo: ModuloDescricao) {
+        setAdiciona(adiciona.filter((item) => item.id !== modulo.id));
+    }
 
     return (
         <>
-            <Grid templateColumns='repeat(5, 1fr)' gap={3}>
+            <Grid templateColumns="repeat(6, 1fr)" gap={3}>
+                <GridItem colSpan={5}>
+                    <ModalInput
+                        title="Máquina"
+                        placeholder="Chassi da máquina"
+                        onChange={(evento) => setFormMaq({ ...formMaq, descricao: evento.target.value })}
+                        defaultValue={maq.descricao}
+                    />
+                </GridItem>
 
                 <GridItem colSpan={3}>
-                    <ModalInput
-                        title='Nome'
-                        placeholder='Nome do Cliente'
-                        onChange={(evento) => setNome(evento.target.value)}
-                        defaultValue={client.nome} />
+                    <Input
+                        rounded={15}
+                        type="text"
+                        value={inputValue}
+                        bg="white"
+                        w="100%"
+                        onChange={(event) => {
+                            setInputValue(event.target.value);
+                        }}
+                        placeholder="Digite o nome do módulo"
+                    />
+                    <Box
+                        rounded={15}
+                        marginTop="10px"
+                        maxH="350px"
+                        overflowY="scroll"
+                        border="1px solid"
+                        borderColor="gray.200"
+                    >
+                        {filtro.map((modulo) => (
+                            <ModuloList
+                                onClick={() => addModulo(modulo)}
+                                key={modulo.id}
+                                modulo={modulo}
+                            />
+                        ))}
+                    </Box>
                 </GridItem>
 
-                <GridItem colSpan={2}>
-                    <ModalInput
-                        title='CPF'
-                        placeholder='Número do CPF do Cliente'
-                        defaultValue={client.cpf}
-                        onChange={(evento) => setCpf(evento.target.value)} />
-                </GridItem>
-
-                <GridItem colSpan={5} mb={3}>
-                    <ModalInput
-                        title='E-mail'
-                        placeholder='E-mail do Cliente'
-                        defaultValue={client.contato}
-                        onChange={(evento) => setContato(evento.target.value)} />
+                <GridItem colSpan={3}>
+                    <Box rounded={15} marginTop="10px" maxH="350px" overflowY="scroll">
+                        {adiciona.map((modulo) => (
+                            <ModuloList onClick={() => removeModulo(modulo)} key={modulo.id} modulo={modulo} />
+                        ))}
+                    </Box>
                 </GridItem>
 
                 <GridItem colSpan={5} mb={3}>
                     <Divider />
                 </GridItem>
 
-                <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editClient}>Criar Cliente</Button>
+                <GridItem colSpan={3} justifySelf="end">
+                    <Button onClick={editMaq}>Atualizar Máquina</Button>
                 </GridItem>
 
-                <GridItem colSpan={2} justifySelf='end'>
+                <GridItem colSpan={2} justifySelf="end">
                     <Button onClick={onClose}>Cancelar</Button>
                 </GridItem>
-
             </Grid>
         </>
     )
