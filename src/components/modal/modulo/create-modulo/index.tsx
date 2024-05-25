@@ -3,6 +3,7 @@ import ModalInput from '../../modal-input';
 import CreateModal from '../../create-modal';
 import { useState } from 'react';
 import api from '../../../../helpers/axios';
+import ModalInputImage from '../../modal-input-image';
 
 interface Props {
   onClose: () => void
@@ -26,6 +27,14 @@ export function CreateModulo({ onClose }: Props) {
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
   const [imagem, setImagem] = useState('')
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files[0]) {
+      setSelectedFile(files[0]);
+    }
+  };
 
   return (
     <>
@@ -45,11 +54,11 @@ export function CreateModulo({ onClose }: Props) {
             onChange={(evento) => setDescricao(evento.target.value)} />
         </GridItem>
 
-        <GridItem colSpan={5} mb={3}>
-          <ModalInput
-            title='Imagem'
-            placeholder='Imagem ilustrativa do módulo'
-            onChange={(evento) => setImagem(evento.target.value)} />
+        <GridItem colSpan={2} mb={3}>
+          <ModalInputImage
+            title="Upload de Imagem"
+            onChange={handleFileChange}
+          />
         </GridItem>
 
         <GridItem colSpan={5} mb={3}>

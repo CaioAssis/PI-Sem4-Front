@@ -2,6 +2,7 @@ import { Button, Divider, Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import { useState } from 'react';
+import ModalInputImage from '../../modal-input-image';
 
 interface ModuloProps {
     modulo: ModuloDescricao
@@ -28,6 +29,14 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
     const [titulo, setTitulo] = useState(modulo.titulo)
     const [descricao, setDescricao] = useState(modulo.descricao)
     const [imagem, setImagem] = useState(modulo.imagem)
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files[0]) {
+            setSelectedFile(files[0]);
+        }
+    };
 
     return (
         <>
@@ -49,15 +58,14 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
                         onChange={(evento) => setDescricao(evento.target.value)} />
                 </GridItem>
 
-                <GridItem colSpan={5} mb={3}>
-                    <ModalInput
-                        title='Imagem'
-                        placeholder='Imagem do módulo'
-                        defaultValue={modulo.imagem}
-                        onChange={(evento) => setImagem(evento.target.value)} />
+                <GridItem colSpan={2} mb={3}>
+                    <ModalInputImage
+                        title="Upload de Imagem"
+                        onChange={handleFileChange}
+                    />
                 </GridItem>
 
-                <GridItem colSpan={5} mb={3}>
+                <GridItem colSpan={1} mb={3}>
                     <Divider />
                 </GridItem>
 
