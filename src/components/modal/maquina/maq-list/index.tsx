@@ -2,7 +2,7 @@ import { Box, Button, Text } from "@chakra-ui/react"
 import { Maquina } from "../../../interfaces/maquina"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
-// import UpdateClientForm from "../update-client-form"
+import UpdateMaqForm from "../update-maq-form"
 
 interface MaqProps {
     maq: Maquina
@@ -27,8 +27,8 @@ export default function MaqList({ maq }: MaqProps) {
                     {maq.descricao}
                 </Text>
             </Button>
-            <CreateModal label='Editar Cliente' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateClientForm maq={maq} onClose={handleCloseModalUpdate} />
+            <CreateModal label='Editar Máquina' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
+                <UpdateMaqForm maq={maq} onClose={handleCloseModalUpdate} />
             </CreateModal>
         </Box>
     )
