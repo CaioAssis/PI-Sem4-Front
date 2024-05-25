@@ -1,11 +1,11 @@
 import { useState } from "react"
 import Layout from "../../components/layout"
-import CreateUser from "../../components/modal/funcionario/create-user"
+import CreateMaq from "../../components/modal/maquina/create-maq"
 import ModalButton from "../../components/modal/modal-button"
-import UpdateUser from "../../components/modal/funcionario/update-user";
+import UpdateMaq from "../../components/modal/maquina/update-maq";
 import CreateModal from "../../components/modal/create-modal";
 
-function AdmUser() {
+function Maquina() {
     const [createOpen, setCreateOpen] = useState(false)
     const [updateOpen, setUpdateOpen] = useState(false)
     const [updateShow, setUpdateShow] = useState(false)
@@ -33,15 +33,15 @@ function AdmUser() {
     return (
         <Layout>
 
-            <ModalButton label='Criar Usuário' onClick={handleOpenModalCreate} />
-            <CreateModal label='Criar Usuário' isOpen={createOpen} onClose={handleCloseModalCreate}>
-                <CreateUser onClose={handleCloseModalCreate}/>
+            <ModalButton label='Criar Máquina' onClick={handleOpenModalCreate} />
+            <CreateModal label='Criar Máquina' isOpen={createOpen} onClose={handleCloseModalCreate}>
+                <CreateMaq onClose={handleCloseModalCreate}/>
             </CreateModal>
 
-            <ModalButton label='Editar Usuário' onClick={handleUpdateShow}/>
-            {updateShow && <UpdateUser/> }
+            <ModalButton label='Editar Máquina' onClick={handleUpdateShow}/>
+            {updateShow && <UpdateMaq/> }
 
         </Layout>
     )
 }
-export default AdmUser
+export default Maquina
