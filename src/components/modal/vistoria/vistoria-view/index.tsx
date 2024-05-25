@@ -1,9 +1,11 @@
 import { Vistoria } from "../../../interfaces/vistoria";
 import { Text, Image, Box  } from '@chakra-ui/react';
+import ImageExample from "../../../pdf/img-example";
 interface ViewProps {
     vistoria: Vistoria
 }
 function VistoriaView({ vistoria }: ViewProps) {
+
     return (
         <>
             <Text> {vistoria.data} - Vistoria {vistoria.id}</Text>
@@ -14,9 +16,9 @@ function VistoriaView({ vistoria }: ViewProps) {
                 <>
                     <Text key={item.id}>{item.moduloDescricao}</Text>
                     <Text>{item.status ? "OK" : "Problema!"}</Text>
-                    <Text>{item.descricao}</Text>
-                    {item.imagem != '' && (<img src={item.imagem}
-                    alt="" height="500px" width="500px" />)}
+                    <Text marginBottom='10px'>{item.descricao}</Text>
+                    {item.imagem != '' && (<img src={ImageExample}
+                    alt="" height="200px" width="200px" />)}
                     <Text>-------------</Text>
                 </>
             ))}
