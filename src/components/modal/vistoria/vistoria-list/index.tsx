@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Vistoria } from "../../../interfaces/vistoria"
 import ModalButton from "../../modal-button/index"
 import VistoriaView from "../vistoria-view/index"
+import CreatePdf from "../../../pdf/index"
 
 interface UserProps {
     vistoria: Vistoria
@@ -37,8 +38,8 @@ const handleUpdateShow = () => {
         <Box w='80%' p={2} display='flex' gap={5} margin='5px'>
             <ModalButton label={vistoria.data}
                 onClick={ handleOpenModalCreate } />
-            <CreateModal label='PDF' isOpen={createOpen} onClose={handleCloseModalCreate}>
-                <VistoriaView vistoria={vistoria} onClose={handleCloseModalCreate} />
+            <CreateModal label={'Vistoria nº' + vistoria.id} isOpen={createOpen} onClose={handleCloseModalCreate}>
+                <CreatePdf vistoria={vistoria} />
             </CreateModal>
         </Box>
     )
