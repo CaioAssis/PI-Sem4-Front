@@ -38,7 +38,7 @@ export default function VSearchMaq() {
                     }}
                 placeholder='Digite o número do chassi' />
 
-            {maquina.map((maq) => (
+            {filtro.map((maq) => (
                 <VistMaqList key={maq.id} maq={maq} />
             ))
             }

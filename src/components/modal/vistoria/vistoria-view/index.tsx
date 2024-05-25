@@ -17,7 +17,7 @@ function VistoriaView({ vistoria }: ViewProps) {
                     <Text key={item.id}>{item.moduloDescricao}</Text>
                     <Text>{item.status ? "OK" : "Problema!"}</Text>
                     <Text marginBottom='10px'>{item.descricao}</Text>
-                    {item.imagem != '' && (<img src={ImageExample}
+                    {item.imagem != '' && (<img src={item.imagem}
                     alt="" height="200px" width="200px" />)}
                     <Text>-------------</Text>
                 </>
