@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react';
 import { Maquina } from '../../../interfaces/maquina';
 import { useEffect, useState } from 'react';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
@@ -69,13 +69,26 @@ export function VistoriaNew({ maq, onClose }: MaquinaProps) {
             <Grid templateColumns="repeat(6, 1fr)" gap={3}>
                 <GridItem colSpan={6}>
                     {maq.modulos.map((modulo) => (
-                        <Box marginBottom='20px'>
+                        <Box marginBottom='20px' w=''>
+
                             <ModalTextarea
                                 title={MockModulos[modulo - 1].titulo}
                                 placeholder={MockModulos[modulo - 1].descricao}
                                 imagem={MockModulos[modulo - 1].imagem} />
 
+                            <Box display='flex' alignItems='start' >
+                                <Checkbox
+                                    mt='5px'
+                                    mb='5px'
+                                    mr='5px'
+                                    colorScheme='green'
+                                    size='lg' />
+                                <Text alignSelf='center'>OK</Text>
+                            </Box>
+
+                            <Divider />
                         </Box>
+
                     ))}
                 </GridItem>
                 <GridItem colSpan={5} mb={3}>
