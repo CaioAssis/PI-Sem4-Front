@@ -11,14 +11,14 @@ interface UserProps {
 export function UpdateUserForm({ user, onClose }: UserProps) {
 
     function editUser() {
-        if (user.nome != '' && user.matricula != '' && user.contato != '' && user.usuario != '' && user.senha != '' && user.role != '') {
+        if (nome != '' && matricula != '' && contato != '' && usuario != '' && senha != '' && role != '') {
             const newUser = {
-                nome: user.nome,
-                matricula: user.matricula,
-                contato: user.contato,
-                usuario: user.usuario,
-                senha: user.senha,
-                role: user.role
+                nome: nome,
+                matricula: matricula,
+                contato: contato,
+                usuario: usuario,
+                senha: senha,
+                role: role
             }
             //api.put('/', newUser) ///////////////ARRUMAR
             //.then(()=> {
@@ -31,14 +31,12 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
         else alert('Os campos precisam estar preenchidos!')
     }
 
-    const [userData, setUserData] = useState({
-        nome:user.nome,
-        matricula: user.matricula,
-        contato:user.contato,
-        usuario:user.usuario,
-        senha:user.senha,
-        role:user.role
-    })
+    const [nome, setNome] = useState(user.nome)
+    const [matricula, setMatricula] = useState(user.matricula)
+    const [contato, setContato] = useState(user.contato)
+    const [usuario, setUsuario] = useState(user.usuario)
+    const [senha, setSenha] = useState(user.senha)
+    const [role, setRole] = useState(user.role)
 
     return (
         <>
@@ -48,7 +46,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                     <ModalInput
                         title='Nome'
                         placeholder='Nome do Funcionário'
-                        onChange={(evento) => setUserData({...userData, nome: evento.target.value})}
+                        onChange={(evento) => setNome(evento.target.value)}
                         defaultValue={user.nome} />
                 </GridItem>
 
@@ -57,7 +55,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                         title='Matrícula'
                         placeholder='Número de identificação do Funcionário'
                         defaultValue={user.matricula}
-                        onChange={(evento) => setUserData({...userData, matricula: evento.target.value})} />
+                        onChange={(evento) => setMatricula(evento.target.value)} />
                 </GridItem>
 
                 <GridItem colSpan={5} mb={3}>
@@ -65,7 +63,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                         title='E-mail'
                         placeholder='E-mail do Funcionário'
                         defaultValue={user.contato}
-                        onChange={(evento) => setUserData({...userData, contato: evento.target.value})} />
+                        onChange={(evento) => setContato(evento.target.value)} />
                 </GridItem>
 
                 <GridItem colSpan={5} mb={3}>
@@ -77,13 +75,13 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                         title='Usuário'
                         placeholder='Nome de Usuário do Funcionário'
                         defaultValue={user.usuario}
-                        onChange={(evento) => setUserData({...userData, usuario: evento.target.value})} />
+                        onChange={(evento) => setUsuario(evento.target.value)} />
 
                     <ModalInput
                         title='Senha'
                         placeholder='Senha do Funcionário'
                         defaultValue={user.senha}
-                        onChange={(evento) => setUserData({...userData, senha: evento.target.value})} />
+                        onChange={(evento) => setSenha(evento.target.value)} />
                 </GridItem>
 
                 <GridItem colSpan={2}>
@@ -91,7 +89,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                     <Select
                         placeholder='---Nível de Permissão do Funcionário---'
                         defaultValue={user.role}
-                        onChange={(evento) => setUserData({...userData, role: evento.target.value})} >
+                        onChange={(evento) => setRole(evento.target.value)} >
                         <option value='ger'>Gerencial</option>
                         <option value='fun'>Funcionário Deere</option>
                         <option value='ter'>Funcionário Concessionária</option>
@@ -99,7 +97,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editUser}>Criar Usuário</Button>
+                    <Button onClick={editUser}>Editar Usuário</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>
