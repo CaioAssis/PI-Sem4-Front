@@ -35,7 +35,7 @@ function AdmClient() {
 
             <ModalButton label='Criar Cliente' onClick={handleOpenModalCreate} />
             <CreateModal label='Criar Cliente' isOpen={createOpen} onClose={handleCloseModalCreate}>
-                <CreateClient onClose={handleCloseModalCreate}/>
+            <CreateClient onClose={handleCloseModalCreate}/>
             </CreateModal>
 
             <ModalButton label='Editar Cliente' onClick={handleUpdateShow}/>

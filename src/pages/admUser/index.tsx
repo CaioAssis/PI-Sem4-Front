@@ -27,7 +27,7 @@ function AdmUser() {
     }
 
     const handleUpdateShow = () => {
-        setUpdateShow(!updateShow);
+        setUpdateShow(!updateShow)
       };
 
     return (
