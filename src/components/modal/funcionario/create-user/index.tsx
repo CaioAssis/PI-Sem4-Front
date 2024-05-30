@@ -8,9 +8,9 @@ interface Props{
   onClose: () => void
 }
 
-export function CreateUser( { onClose }: Props) {
-  function addUser(){
-    if(nome != '' && matricula != '' && contato != '' && usuario != '' && senha != '' && role != ''){
+export function CreateUser({ onClose }: Props) {
+  function addUser() {
+    if (userData.nome != '' && userData.matricula != '' && userData.contato != '' && userData.usuario != '' && userData.senha != '' && userData.role != '') {
       const newUser = {
         nome: nome,
         matricula: matricula,
@@ -24,7 +24,7 @@ export function CreateUser( { onClose }: Props) {
       onClose()
 
       //})
-      
+
     }
     else alert('Os campos precisam estar preenchidos!')
   }
