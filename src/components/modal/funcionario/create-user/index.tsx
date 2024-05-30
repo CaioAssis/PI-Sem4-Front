@@ -10,6 +10,7 @@ interface Props{
 
 export function CreateUser( { onClose }: Props) {
   function addUser(){
+    console.log(role)
     if(nome != '' && matricula != '' && contato != '' && usuario != '' && senha != '' && role != ''){
       const newUser = {
         nome: nome,
@@ -19,13 +20,11 @@ export function CreateUser( { onClose }: Props) {
         senha: senha,
         role: role
       }
-      //api.post('/', newUser) ///////////////ARRUMAR
-      //.then(()=> {
-      onClose()
-
-      //})
-      
-    }
+      api.post('/func/save', newUser)
+      .then(()=> {
+      onClose() 
+    }).catch(()=>{console.log("Error")})
+  }
     else alert('Os campos precisam estar preenchidos!')
   }
 
