@@ -19,11 +19,10 @@ export function CreateUser({ onClose }: Props) {
         senha: userData.senha,
         role: userData.role
       }
-      //api.post('/', newUser) ///////////////ARRUMAR
-      //.then(()=> {
-      onClose()
-
-      //})
+       api.post('/func/save', newUser)
+      .then(()=> {
+      onClose() 
+    }).catch(()=>{alert("Error")})
 
     }
     else alert('Os campos precisam estar preenchidos!')

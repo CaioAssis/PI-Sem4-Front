@@ -2,13 +2,15 @@ import { Button, Divider, Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { Cliente } from '../../../interfaces/cliente';
 import { useState } from 'react';
+import api from '../../../../helpers/axios';
 
 interface ClientProps {
     client: Cliente
     onClose: () => void
+    reload: () => void
 }
 
-export function UpdateClientForm({ client, onClose }: ClientProps) {
+export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
 
     function editClient() {
         if (nome != '' && cpf != '' && contato != '') {
@@ -19,7 +21,13 @@ export function UpdateClientForm({ client, onClose }: ClientProps) {
             }
 
             console.log(newClient.nome)
-            onClose()
+            api.put(`/client/update/${client.id}`, newClient)
+            .then(()=> {
+                onClose()
+                reload()
+            }
+            )
+            .catch(error => {console.log("Error")})
 
         }
         else alert('Os campos precisam estar preenchidos!')
@@ -62,7 +70,7 @@ export function UpdateClientForm({ client, onClose }: ClientProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editClient}>Criar Cliente</Button>
+                    <Button onClick={editClient}>Editar Cliente</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

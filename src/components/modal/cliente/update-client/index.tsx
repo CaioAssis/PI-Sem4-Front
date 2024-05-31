@@ -2,26 +2,40 @@ import { Input } from "@chakra-ui/react"
 import ClientList from "../client-list"
 import { useEffect, useState } from "react"
 import { Cliente } from "../../../interfaces/cliente"
+import api from "../../../../helpers/axios";
 
 export function UpdateClient() {
 
-  const [client, setClient] = useState<Cliente[]>([
-    { id: 1, nome: 'jusé', cpf: '11111', contato: 'teste1@teste' },
-    { id: 2, nome: 'juão', cpf: '22222', contato: 'teste2@gmail' },
-    { id: 3, nome: 'judeu', cpf: '33333', contato: 'teste3@hotmail' },
-    { id: 4, nome: 'lébisca', cpf: '44444', contato: 'teste4@yahoo' },
-    { id: 5, nome: 'jailson mendes', cpf: '55555', contato: 'teste5@uol' }
-  ])
+  const [client, setClient] = useState<Cliente[]>([]);
+  const [filtro, setFiltro] = useState<Cliente[]>([]);
+  const [inputValue, setInputValue] = useState('');
 
-  const [filtro, setFiltro] = useState<Cliente[]>([])
+  function atualizar(){
+     // Função para buscar clientes da API
+     const fetchClients = async () => {
+      try {
+        const response = await api.get('/client/get'); // Substitua pelo endpoint real da sua API
+        setClient(response.data);
+        setFiltro(response.data); // Inicialmente, mostrar todos os clientes
+      } catch (error) {
+        console.error("Erro ao buscar clientes:", error);
+      }
+    };
 
-  const [inputValue, setInputValue] = useState('')
+    fetchClients();
+  }
+
+  useEffect(() => {
+    atualizar()
+  }, []);
+
   useEffect(() => {
     const filtrados = client.filter((item) =>
       item.nome.toLowerCase().includes(inputValue.toLowerCase())
     );
     setFiltro(filtrados);
-  }, [inputValue])
+  }, [inputValue, client]);
+
   return (
     <>
       <Input
@@ -36,7 +50,7 @@ export function UpdateClient() {
         placeholder='Digite o nome do cliente' />
 
       {filtro.map((client) => (
-        <ClientList key={client.id} client={client} />
+        <ClientList key={client.id} client={client} reload={atualizar}/>
       ))
       }
     </>

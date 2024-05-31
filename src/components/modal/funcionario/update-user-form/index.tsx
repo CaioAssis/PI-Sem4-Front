@@ -2,30 +2,33 @@ import { Button, Divider, Grid, GridItem, Select, Text } from '@chakra-ui/react'
 import ModalInput from '../../modal-input';
 import { Funcionario } from '../../../interfaces/funcionario';
 import { useState } from 'react';
+import api from '../../../../helpers/axios';
 
 interface UserProps {
     user: Funcionario
     onClose: () => void
+    reload: () => void
 }
 
-export function UpdateUserForm({ user, onClose }: UserProps) {
+export function UpdateUserForm({ user, onClose, reload }: UserProps) {
 
     function editUser() {
-        if (user.nome != '' && user.matricula != '' && user.contato != '' && user.usuario != '' && user.senha != '' && user.role != '') {
+        if (userData.nome != '' && userData.matricula != '' && userData.contato != '' && userData.usuario != '' && userData.senha != '' && userData.role != '') {
             const newUser = {
-                nome: user.nome,
-                matricula: user.matricula,
-                contato: user.contato,
-                usuario: user.usuario,
-                senha: user.senha,
-                role: user.role
+                nome: userData.nome,
+                matricula: userData.matricula,
+                contato: userData.contato,
+                usuario: userData.usuario,
+                senha: userData.senha,
+                role: userData.role
             }
-            //api.put('/', newUser) ///////////////ARRUMAR
-            //.then(()=> {
-            console.log(newUser.nome)
-            onClose()
+            console.log(newUser)
+            reload()
 
-            //})
+            
+            api.put(`/func/update/${user.id}`, newUser)
+            .then(()=> onClose())
+            .catch(error => {console.log(error)})
 
         }
         else alert('Os campos precisam estar preenchidos!')
@@ -82,7 +85,6 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                     <ModalInput
                         title='Senha'
                         placeholder='Senha do Funcionário'
-                        defaultValue={user.senha}
                         onChange={(evento) => setUserData({...userData, senha: evento.target.value})} />
                 </GridItem>
 
@@ -99,7 +101,7 @@ export function UpdateUserForm({ user, onClose }: UserProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editUser}>Criar Usuário</Button>
+                    <Button onClick={editUser}>Editar Usuário</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

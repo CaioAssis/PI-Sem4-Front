@@ -6,8 +6,9 @@ import UpdateClientForm from "../update-client-form"
 
 interface ClientProps {
     client: Cliente
+    reload: () => void
 }
-export default function ClientList({ client }: ClientProps) {
+export default function ClientList({ client, reload }: ClientProps) {
 
 
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -28,7 +29,7 @@ export default function ClientList({ client }: ClientProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Cliente' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateClientForm client={client} onClose={handleCloseModalUpdate} />
+                <UpdateClientForm client={client} onClose={handleCloseModalUpdate} reload={reload}/>
             </CreateModal>
         </Box>
     )
