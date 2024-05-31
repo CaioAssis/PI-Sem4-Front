@@ -17,15 +17,15 @@ export function UpdateUser() {
   function atualizar(){
     const fetchUsers = async () => {
       try{
-    const filtrados = await api.get('/func/get');
-    setUser(filtrados.data) 
-    setFiltro(filtrados.data);
+    const filtrados = await api.get('/func/get')
+    setUser(filtrados.data)
+    setFiltro(filtrados.data)
       }
       catch(error)
       {
-        console.error("Erro ao buscar usuário", error);
+        console.error("Erro ao buscar usuário", error)
       }
-    };
+    }
 
     fetchUsers();
   }
@@ -37,9 +37,9 @@ export function UpdateUser() {
   useEffect(() => {
     const filtrados = user.filter((item) =>
       item.nome.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    setFiltro(filtrados);
-  }, [inputValue, user]);
+    )
+    setFiltro(filtrados)
+  }, [inputValue, user])
 
 
   

@@ -7,9 +7,10 @@ interface InputProps {
     defaultValue?: string
     ref?: string
     imagem?: string
+    onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-function ModalTextarea({ title, placeholder, defaultValue, ref, imagem }: InputProps) {
+function ModalTextarea({ title, placeholder, defaultValue, ref, imagem, onChange }: InputProps) {
     const [popupImageUrl, setPopupImageUrl] = useState('')
 
     const { onOpen } = useDisclosure();
@@ -17,6 +18,7 @@ function ModalTextarea({ title, placeholder, defaultValue, ref, imagem }: InputP
         setPopupImageUrl(imageUrl)
         onOpen()
     }
+
 
     return (
         <>
@@ -38,6 +40,7 @@ function ModalTextarea({ title, placeholder, defaultValue, ref, imagem }: InputP
                 bg='white'
                 placeholder={placeholder}
                 defaultValue={defaultValue}
+                onChange={onChange}
                 ref={ref} />
         </>
     )
