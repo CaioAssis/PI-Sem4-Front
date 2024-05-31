@@ -17,7 +17,6 @@ const routes = createBrowserRouter([
   {path: '/admClient', element:<AdmClient />},
   {path:'/Login', element: <Login />},
   {path: '/Home', element: <Home />}
-  {path: '/', errorElement: <NotFound/>}
 ])
 
 export default routes //prof usou router
