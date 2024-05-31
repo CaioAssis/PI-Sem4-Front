@@ -1,9 +1,10 @@
 import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react';
 import { Maquina } from '../../../interfaces/maquina';
-import { useEffect, useState } from 'react';
-import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
+import { ChangeEvent, useEffect, useState } from 'react';
 import MockModulos from './mock-modulo';
 import ModalTextarea from '../../modal-textarea';
+import ModalInputImage from '../../modal-input-image';
+import { ModuloInspecao } from '../../../interfaces/moduloInspecao';
 
 interface MaquinaProps {
     maq: Maquina
@@ -12,69 +13,74 @@ interface MaquinaProps {
 
 export function VistoriaNew({ maq, onClose }: MaquinaProps) {
 
-    function editMaq() {
-        if (maq.descricao != '') {
-            const newMaq = {
-                descricao: maq.descricao,
-                modulos: maq.modulos
-            }
+    const [vistDesc, setVistDesc] = useState<string[]>([])
+    const handleTextareaChange = (index: number, event: ChangeEvent<HTMLTextAreaElement>) => {
+        const newValues = [...vistDesc]
+        newValues[index] = event.target.value
+        setVistDesc(newValues)
+        console.log(vistDesc)
+    };
 
-            console.log(newMaq.descricao)
-            onClose()
-
+    const [vistImg, setVistImg] = useState<string[]>([])
+    const handleImageChange = (index: number, event: ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        const newValues = [...vistImg]
+        if (files && files[0]) {
+          const file = files[0];
+    
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result as string;
+            newValues[index] = base64String
+            setVistImg(newValues);
+            
+            console.log(vistImg)
+            //console.log(base64String) //
+          };
+          reader.readAsDataURL(file);
+         
         }
-        else alert('Os campos precisam estar preenchidos!')
-    }
+    };
 
-    const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
-        return numbers.map(num => ({
-            id: MockModulos[num - 1].id,
-            titulo: MockModulos[num - 1].titulo,
-            descricao: MockModulos[num - 1].descricao,
-            imagem: MockModulos[num - 1].imagem,
-        }));
-    }
 
-    const [formMaq, setFormMaq] = useState({
-        id: maq.id,
-        descricao: maq.descricao,
-        modulos: maq.modulos
-    })
+    /*<Box>
+                                <Box>{imagem != '' && (<img src={imagem}
+                        alt="" height="200px" width="200px" />)}
+                    </Box>
+                        <ModalInputImage
+                            title="Upload de Imagem"
+                            onChange={handleFileChange}
+                        />
+                                </Box> */
 
-    const [inputValue, setInputValue] = useState('')
-    const [filtro, setFiltro] = useState<ModuloDescricao[]>([])
-    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
 
-    const [modulos, setModulos] = useState<ModuloDescricao[]>(MockModulos)
 
-    useEffect(() => {
-        const filtrados = modulos.filter((item) =>
-            item.titulo.toLowerCase().includes(inputValue.toLowerCase())
-        );
-        setFiltro(filtrados)
-    }, [inputValue, modulos])
 
-    function addModulo(modulo: ModuloDescricao) {
-        if (!adiciona.some((item) => item.id === modulo.id)) {
-            setAdiciona([...adiciona, modulo])
-        }
-    }
 
-    function removeModulo(modulo: ModuloDescricao) {
-        setAdiciona(adiciona.filter((item) => item.id !== modulo.id))
-    }
+
 
     return (
         <>
             <Grid templateColumns="repeat(6, 1fr)" gap={3}>
                 <GridItem colSpan={6}>
-                    {maq.modulos.map((modulo) => (
+                    {maq.modulos.map((modulo, index) => (
                         <Box marginBottom='20px' w=''>
 
                             <ModalTextarea
                                 title={MockModulos[modulo - 1].titulo}
                                 placeholder={MockModulos[modulo - 1].descricao}
-                                imagem={MockModulos[modulo - 1].imagem} />
+                                imagem={MockModulos[modulo - 1].imagem}
+                                onChange={(event) => handleTextareaChange(index, event)} />
+
+                            <Box>
+                                <Box>{vistImg[index] != '' && (<img src={vistImg[index]}
+                                    alt="" height="200px" width="200px" />)}
+                                </Box>
+                                <ModalInputImage
+                                    title="Upload de Imagem"
+                                    onChange={(event) => handleImageChange(index, event)}
+                                />
+                            </Box>
 
                             <Box display='flex' alignItems='start' >
                                 <Checkbox
@@ -96,7 +102,7 @@ export function VistoriaNew({ maq, onClose }: MaquinaProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf="end">
-                    <Button onClick={editMaq}>Atualizar Máquina</Button>
+                    <Button onClick={onClose}>Atualizar Máquina</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf="end">

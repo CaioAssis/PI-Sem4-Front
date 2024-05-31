@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import { useState } from 'react';
@@ -12,14 +12,14 @@ interface ModuloProps {
 export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
 
     function editModulo() {
-        if (titulo != '' && descricao != '' && imagem != '') {
+        if (titulo != '' && descricao != '') {
             const newModulo = {
                 titulo: titulo,
                 descricao: descricao,
-                imagem: imagem
+                imagem: imagem? imagem : ''
             }
 
-            console.log(newModulo.titulo)
+            console.log(newModulo)
             onClose()
 
         }
@@ -29,15 +29,24 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
     const [titulo, setTitulo] = useState(modulo.titulo)
     const [descricao, setDescricao] = useState(modulo.descricao)
     const [imagem, setImagem] = useState(modulo.imagem)
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files && files[0]) {
-            setSelectedFile(files[0]);
+          const file = files[0];
+    
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result as string;
+            setImagem(base64String);
+    
+            //console.log(base64String) //
+          };
+          reader.readAsDataURL(file);
+         
         }
-    };
-
+        else setImagem('')
+      };
     return (
         <>
             <Grid templateColumns='repeat(5, 1fr)' gap={3}>
@@ -59,6 +68,10 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
                 </GridItem>
 
                 <GridItem colSpan={2} mb={3}>
+
+                <Box>{imagem != '' && (<img src={imagem}
+                    alt="" height="200px" width="200px" />)}
+                </Box>
                     <ModalInputImage
                         title="Upload de Imagem"
                         onChange={handleFileChange}
@@ -70,7 +83,7 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editModulo}>Criar Módulo</Button>
+                    <Button onClick={editModulo}>Editar Módulo</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

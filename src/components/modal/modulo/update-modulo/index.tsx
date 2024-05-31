@@ -2,15 +2,16 @@ import { Input } from "@chakra-ui/react"
 import ModuloList from "../modulo-list"
 import { useEffect, useState } from "react"
 import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
+import ImageExample from "../../../pdf/img-example"
 
 export function UpdateModulo() {
 
   const [modulo, setModulo] = useState<ModuloDescricao[]>([
-    { id: 1, titulo: 'módulo 1', descricao: 'módulo des 1', imagem: '.jpg' },
-    { id: 2, titulo: 'módulo 2', descricao: 'módulo des 2', imagem: '.jpg' },
-    { id: 3, titulo: 'módulo 3', descricao: 'módulo des 3', imagem: '.jpg' },
-    { id: 4, titulo: 'módulo 4', descricao: 'módulo des 4', imagem: '.jpg' },
-    { id: 5, titulo: 'módulo 5', descricao: 'módulo des 5', imagem: '.jpg' }
+    { id: 1, titulo: 'módulo 1', descricao: 'módulo des 1', imagem: ImageExample },
+    { id: 2, titulo: 'módulo 2', descricao: 'módulo des 2', imagem: '' },
+    { id: 3, titulo: 'módulo 3', descricao: 'módulo des 3', imagem: '' },
+    { id: 4, titulo: 'módulo 4', descricao: 'módulo des 4', imagem: '' },
+    { id: 5, titulo: 'módulo 5', descricao: 'módulo des 5', imagem: '' }
   ])
 
   const [filtro, setFiltro] = useState<ModuloDescricao[]>([])

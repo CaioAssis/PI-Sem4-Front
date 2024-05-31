@@ -1,8 +1,6 @@
-import { Button, Divider, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
-import CreateModal from '../../create-modal';
 import { useState } from 'react';
-import api from '../../../../helpers/axios';
 import ModalInputImage from '../../modal-input-image';
 
 interface Props {
@@ -10,31 +8,44 @@ interface Props {
 }
 
 export function CreateModulo({ onClose }: Props) {
-  function addModulo() {
-    if (titulo != '' && descricao != '' && imagem != '') {
-      const newModulo = {
-        titulo: titulo,
-        descricao: descricao,
-        imagem: imagem
-      }
-
-      onClose()
-
-    }
-    else alert('Os campos precisam estar preenchidos!')
-  }
-
-  const [titulo, setTitulo] = useState('')
-  const [descricao, setDescricao] = useState('')
-  const [imagem, setImagem] = useState('')
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [titulo, setTitulo] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [imagem, setImagem] = useState('');
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files[0]) {
-      setSelectedFile(files[0]);
+      const file = files[0];
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setImagem(base64String);
+
+        console.log(base64String) //
+      };
+      reader.readAsDataURL(file);
+
     }
   };
+
+  function addModulo() {
+    if (titulo !== '' && descricao !== '' && imagem !== '') {
+      const newModulo = {
+        titulo: titulo,
+        descricao: descricao,
+        imagem: imagem
+      };
+
+
+      onClose();
+
+
+
+    } else {
+      alert('Os campos precisam estar preenchidos!');
+    }
+  }
 
   return (
     <>
@@ -55,6 +66,9 @@ export function CreateModulo({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={2} mb={3}>
+          <Box>{imagem != '' && (<img src={imagem}
+            alt="" height="200px" width="200px" />)}
+          </Box>
           <ModalInputImage
             title="Upload de Imagem"
             onChange={handleFileChange}
@@ -75,6 +89,7 @@ export function CreateModulo({ onClose }: Props) {
 
       </Grid>
     </>
-  )
+  );
 }
-export default CreateModulo
+
+export default CreateModulo;
