@@ -17,10 +17,10 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
         if (maq.descricao != '') {
             const newMaq = {
                 descricao: maq.descricao,
-                modulos: maq.modulos
+                modulos: adiciona? adiciona:[]
             }
 
-            console.log(newMaq.descricao)
+            console.log(newMaq)
             onClose()
 
         }

@@ -12,11 +12,12 @@ interface Props {
 
 export function CreateMaq({ onClose }: Props) {
   function addMaq() {
-    if (descricao !== '' && vistorias !== '') {
+    if (descricao !== '') {
       const newMaq = {
         descricao: descricao,
-        vistorias: vistorias,
+        modulos: adiciona? adiciona:[]
       };
+      console.log(newMaq)
 
       onClose();
     } else {
