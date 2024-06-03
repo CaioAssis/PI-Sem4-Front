@@ -1,6 +1,6 @@
 import { Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import VistMaqList from "../vist-maq-list";
+import VistMaqView from "../vist-maq-view";
 import { Maquina } from "../../../interfaces/maquina";
 import { Text } from "@chakra-ui/react";
 
@@ -39,7 +39,7 @@ export default function VSearchMaq() {
                 placeholder='Digite o número do chassi' />
 
             {filtro.map((maq) => (
-                <VistMaqList key={maq.id} maq={maq} />
+                <VistMaqView key={maq.id} maq={maq} />
             ))
             }
         </>

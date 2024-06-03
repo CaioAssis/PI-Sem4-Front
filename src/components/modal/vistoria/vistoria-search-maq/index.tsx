@@ -5,7 +5,7 @@ import { Maquina } from "../../../interfaces/maquina";
 import { Text } from "@chakra-ui/react";
 
 
-export default function VSearchMaq() {
+export default function VSearchView() {
     const [maquina, setMaq] = useState<Maquina[]>([
         { id: 1, descricao: 'chassi 1', modulos: [1, 2, 3], vistorias: [1, 2] },
         { id: 2, descricao: 'chassi 2', modulos: [5, 3], vistorias: [3, 5] },

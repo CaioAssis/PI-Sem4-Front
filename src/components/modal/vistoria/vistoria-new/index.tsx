@@ -102,7 +102,7 @@ export function VistoriaNew({ maq, onClose }: MaquinaProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf="end">
-                    <Button onClick={onClose}>Atualizar Máquina</Button>
+                    <Button onClick={onClose}>Criar Vistoria</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf="end">
