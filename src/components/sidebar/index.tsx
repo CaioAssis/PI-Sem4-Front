@@ -6,7 +6,6 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -24,18 +23,19 @@ import {
 import { GiFarmTractor, GiHamburgerMenu } from 'react-icons/gi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-
+import { Link } from "react-router-dom"
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  url: string
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Usuario', icon: VscAccount },
-  { name: 'Cliente', icon: VscPerson },
-  { name: 'Iniciar Vistoria', icon: VscFile},
-  { name: 'Ver Vistoria', icon: VscEye },
-  { name: 'Máquina', icon: GiFarmTractor },
-  { name: 'Modulo', icon: VscDebugDisconnect },
+  { name: 'Usuario', icon: VscAccount, url: "/admUser" },
+  { name: 'Cliente', icon: VscPerson, url: "/admClient" },
+  { name: 'Iniciar Vistoria', icon: VscFile, url: "/initVistoria"},
+  { name: 'Ver Vistoria', icon: VscEye, url: "/vistoria" },
+  { name: 'Máquina', icon: GiFarmTractor, url: "/maquina" },
+  { name: 'Modulo', icon: VscDebugDisconnect, url: "/modulo" },
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
@@ -88,7 +88,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} url={link.url}>
           {link.name}
         </NavItem>
       ))}
@@ -99,10 +99,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 interface NavItemProps extends FlexProps {
   icon: IconType;
   children: ReactText;
+  url: string
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link to={url} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"

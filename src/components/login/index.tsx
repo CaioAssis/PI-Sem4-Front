@@ -30,7 +30,7 @@ import {
             p={8}>
                 <Stack align={'center'}>
                 <img src="https://www.deere.com.br/assets/images/deere-logo-agriculture.svg"></img>
-            <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+            <Heading fontSize={'2xl'}>Acesse a sua conta!</Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
             <Link color={'green.400'}></Link> 
             </Text>
@@ -41,7 +41,7 @@ import {
                 <Input type="email" />
               </FormControl>
               <FormControl id="password">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Senha</FormLabel>
                 <Input type="password" />
               </FormControl>
               <Stack spacing={10}>
@@ -49,7 +49,7 @@ import {
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Checkbox>Remember me</Checkbox>
+                  <Checkbox>Lembre-me</Checkbox>
                   <Link color={'yellow.400'}>Forgot password?</Link>
                 </Stack>
                 <Button
@@ -58,7 +58,7 @@ import {
                   _hover={{
                     bg: 'green.500',
                   }}>
-                  Sign in
+                  Login
                 </Button>
               </Stack>
             </Stack>
