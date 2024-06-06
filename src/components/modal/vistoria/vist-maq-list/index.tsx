@@ -3,7 +3,7 @@ import { Maquina } from "../../../interfaces/maquina"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
 import VistoriaNew from "../vistoria-new"
-import MockModulos from "../vistoria-new/mock-modulo"
+import MockModulos from "../../../mockup/mock-modulo"
 
 interface MaqProps {
     maq: Maquina

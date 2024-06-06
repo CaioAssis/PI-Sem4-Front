@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, ChakraProvider, Text } from '@chakra-ui/react';
+import { Box, Button, ChakraProvider } from '@chakra-ui/react';
 import html2pdf from 'html2pdf.js';
 import VistoriaView from '../modal/vistoria/vistoria-view';
 import { Vistoria } from '../interfaces/vistoria';

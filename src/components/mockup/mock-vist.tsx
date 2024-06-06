@@ -1,5 +1,5 @@
-import { Vistoria } from "../../../interfaces/vistoria";
-import BaseImage2 from "../../../pdf/img-examplecopy";
+import { Vistoria } from "../interfaces/vistoria";
+import BaseImage2 from "./img-examplecopy";
 
 const MockVist: Vistoria[] = [
     { id: 1, data: '', anexo: BaseImage2, status: 'OK', maquina: 1, moduloInspecao: [] },

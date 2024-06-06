@@ -1,6 +1,5 @@
 import { Vistoria } from "../../../interfaces/vistoria";
 import { Text, Image, Box  } from '@chakra-ui/react';
-import ImageExample from "../../../pdf/img-example";
 interface ViewProps {
     vistoria: Vistoria
 }

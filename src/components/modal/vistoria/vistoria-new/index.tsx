@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react';
 import { Maquina } from '../../../interfaces/maquina';
 import { ChangeEvent, useEffect, useState } from 'react';
-import MockModulos from './mock-modulo';
+import MockModulos from '../../../mockup/mock-modulo';
 import ModalTextarea from '../../modal-textarea';
 import ModalInputImage from '../../modal-input-image';
 import { ModuloInspecao } from '../../../interfaces/moduloInspecao';

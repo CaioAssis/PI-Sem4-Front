@@ -4,7 +4,7 @@ import { Maquina } from '../../../interfaces/maquina';
 import { useEffect, useState } from 'react';
 import ModuloList from '../modulo-list';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
-import MockModulos from './mock-modulo';
+import MockModulos from '../../../mockup/mock-modulo';
 
 interface MaquinaProps {
     maq: Maquina

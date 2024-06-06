@@ -1,6 +1,6 @@
-import { ModuloDescricao } from "../../../interfaces/moduloDescricao";
-import ImageExample from "../../../pdf/img-example";
-import BaseImage2 from "../../../pdf/img-examplecopy";
+import { ModuloDescricao } from "../interfaces/moduloDescricao";
+import ImageExample from "./img-example";
+import BaseImage2 from "./img-examplecopy";
 
 const MockModulos: ModuloDescricao[] = [
     { id: 1, titulo: 'Tipo de vistoria', descricao: 'Descrever o tipo de vistoria', imagem: BaseImage2 },
