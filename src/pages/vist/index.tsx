@@ -3,6 +3,7 @@ import { Vistoria } from "../../components/interfaces/vistoria"
 import Layout from "../../components/layout"
 import VistoriaList from "../../components/modal/vistoria/vistoria-list"
 import ImageExample from "../../components/pdf/img-example"
+import VSearchView from "../../components/modal/vistoria/vistoria-search-view"
 
 function Vist() {
     const [vist, setVist] = useState<Vistoria[]>([
@@ -44,11 +45,9 @@ function Vist() {
     return (
 
         <Layout>
-            {
-                vist.filter(vist => vist.maquina ==    1    ).map((vistoria) => (
-                    <VistoriaList key={vistoria.id} vistoria={vistoria} />
-                ))
-            }
+
+                    <VSearchView/>
+
         </Layout>
 
     )

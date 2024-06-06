@@ -1,10 +1,10 @@
 import { Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import VistMaqView from "../vist-maq-view";
 import { Maquina } from "../../../interfaces/maquina";
 import { Text } from "@chakra-ui/react";
-import VistMaqView from "../vist-maq-view";
 
-export default function VSearchMaq() {
+export default function VSearchView() {
     const [maquina, setMaq] = useState<Maquina[]>([
         { id: 1, descricao: 'chassi 1', modulos: [1, 2, 3], vistorias: [1, 2] },
         { id: 2, descricao: 'chassi 2', modulos: [5, 3], vistorias: [3, 5] },
@@ -13,8 +13,6 @@ export default function VSearchMaq() {
         { id: 5, descricao: 'chassi 5', modulos: [3, 4], vistorias: [] }])
     const [filtro, setFiltro] = useState<Maquina[]>([])
 
-
-
     const [inputValue, setInputValue] = useState('')
     useEffect(() => {
         const filtrados = maquina.filter((item) =>
@@ -22,7 +20,6 @@ export default function VSearchMaq() {
         );
         setFiltro(filtrados);
     }, [inputValue])
-
 
     return (
         <>

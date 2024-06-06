@@ -30,11 +30,11 @@ export function CreateModulo({ onClose }: Props) {
   };
 
   function addModulo() {
-    if (titulo !== '' && descricao !== '' && imagem !== '') {
+    if (titulo !== '' && descricao !== '') {
       const newModulo = {
         titulo: titulo,
         descricao: descricao,
-        imagem: imagem
+        imagem: imagem? imagem:''
       };
 
 

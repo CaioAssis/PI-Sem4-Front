@@ -7,11 +7,11 @@ import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
 export function UpdateMaq() {
 
   const [maquina, setMaq] = useState<Maquina[]>([
-    { id: 1, descricao: 'chassi 1', modulos: [1, 2, 3] },
-    { id: 2, descricao: 'chassi 2', modulos: [5, 3] },
-    { id: 3, descricao: 'chassi 3', modulos: [5, 2] },
-    { id: 4, descricao: 'chassi 4', modulos: [4, 1]},
-    { id: 5, descricao: 'chassi 5', modulos: [3, 4] }
+    { id: 1, descricao: 'chassi 1', modulos: [1, 2, 3], vistorias: [] },
+    { id: 2, descricao: 'chassi 2', modulos: [5, 3], vistorias: [] },
+    { id: 3, descricao: 'chassi 3', modulos: [5, 2], vistorias: [] },
+    { id: 4, descricao: 'chassi 4', modulos: [4, 1], vistorias: [] },
+    { id: 5, descricao: 'chassi 5', modulos: [3, 4], vistorias: [] }
   ])
   const [filtro, setFiltro] = useState<Maquina[]>([])
 

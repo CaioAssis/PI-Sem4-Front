@@ -11,7 +11,6 @@ export function UpdateUser() {
   ])
   const [filtro, setFiltro] = useState<Funcionario[]>([])
 
-
   const [inputValue, setInputValue] = useState('')
 
   function atualizar(){
