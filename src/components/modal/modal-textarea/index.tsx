@@ -1,6 +1,7 @@
 import { Button, Flex, Text, Textarea, useDisclosure } from "@chakra-ui/react"
 import ImagePopup from "./image-popup"
 import { useState } from "react"
+import ShowPDF from "../../iframe-pdf"
 interface InputProps {
     title: string
     placeholder: string
@@ -34,7 +35,7 @@ function ModalTextarea({ title, placeholder, defaultValue, ref, imagem, onChange
                 {popupImageUrl && (
                     <ImagePopup imageUrl={popupImageUrl} descricao={placeholder} onClose={() => setPopupImageUrl('')} />)}
             </Flex>
-
+            
             <Textarea
                 rounded={15}
                 bg='white'

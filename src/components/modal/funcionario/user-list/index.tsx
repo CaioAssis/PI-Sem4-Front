@@ -10,7 +10,6 @@ interface UserProps {
 }
 export default function UserList({ user, reload }: UserProps) {
 
-
     const [updateOpen, setUpdateOpen] = useState(false)
     const handleOpenModalUpdate = () => {
         setUpdateOpen(true)
