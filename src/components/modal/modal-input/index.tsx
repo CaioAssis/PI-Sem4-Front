@@ -5,7 +5,7 @@ interface InputProps{
     placeholder: string
     defaultValue?: string
     ref?: string
-    onChange?: any
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 function ModalInput({ title, placeholder, defaultValue, ref, onChange}: InputProps){

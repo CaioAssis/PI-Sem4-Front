@@ -6,26 +6,42 @@ import api from "../../../../helpers/axios"
 
 export function UpdateUser() {
 
+ 
   const [user, setUser] = useState<Funcionario[]>([
   ])
   const [filtro, setFiltro] = useState<Funcionario[]>([])
 
   const [inputValue, setInputValue] = useState('')
-  useEffect(()=>{
+
+  function atualizar(){
     const fetchUsers = async () => {
       try{
-    const filtrados = await api.get('/func/get');
-    setUser(filtrados.data) 
-    setFiltro(filtrados.data);
+    const filtrados = await api.get('/func/get')
+    setUser(filtrados.data)
+    setFiltro(filtrados.data)
       }
       catch(error)
       {
-        console.error("Erro ao buscar usuário", error);
+        console.error("Erro ao buscar usuário", error)
       }
-    };
+    }
 
     fetchUsers();
+  }
+
+  useEffect(()=>{
+    atualizar()
   }, [])
+
+  useEffect(() => {
+    const filtrados = user.filter((item) =>
+      item.nome.toLowerCase().includes(inputValue.toLowerCase())
+    )
+    setFiltro(filtrados)
+  }, [inputValue, user])
+
+
+  
   return (
     <>
       <Input 
@@ -40,7 +56,7 @@ export function UpdateUser() {
       placeholder='Digite o nome do usuário' />
 
       {filtro.map((user) => (
-        <UserList key={user.id} user={user}/>
+        <UserList key={user.id} user={user} reload={atualizar}/>
         ))
       }
     </>

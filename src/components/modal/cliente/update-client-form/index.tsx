@@ -7,9 +7,10 @@ import api from '../../../../helpers/axios';
 interface ClientProps {
     client: Cliente
     onClose: () => void
+    reload: () => void
 }
 
-export function UpdateClientForm({ client, onClose }: ClientProps) {
+export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
 
     function editClient() {
         if (nome != '' && cpf != '' && contato != '') {
@@ -19,8 +20,13 @@ export function UpdateClientForm({ client, onClose }: ClientProps) {
                 contato: contato
             }
 
+            console.log(newClient.nome)
             api.put(`/client/update/${client.id}`, newClient)
-            .then(()=> onClose())
+            .then(()=> {
+                onClose()
+                reload()
+            }
+            )
             .catch(error => {console.log("Error")})
 
         }

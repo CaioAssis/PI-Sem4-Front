@@ -6,9 +6,9 @@ import UpdateUserForm from "../update-user-form"
 
 interface UserProps {
     user: Funcionario
+    reload: () => void
 }
-export default function UserList({ user }: UserProps) {
-
+export default function UserList({ user, reload }: UserProps) {
 
     const [updateOpen, setUpdateOpen] = useState(false)
     const handleOpenModalUpdate = () => {
@@ -28,7 +28,7 @@ export default function UserList({ user }: UserProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Usuário' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateUserForm user={user} onClose={handleCloseModalUpdate}/>
+                <UpdateUserForm user={user} onClose={handleCloseModalUpdate} reload={reload}/>
             </CreateModal>
         </Box>
     )

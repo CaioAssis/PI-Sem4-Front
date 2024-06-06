@@ -16,11 +16,10 @@ export function CreateClient({ onClose }: Props) {
         cpf: cpf,
         contato: contato
       }
-
       api.post(`/client/save`, newClient)
       .then(()=>onClose())
       .catch(()=>console.log("Erro"))
-
+      
     }
     else alert('Os campos precisam estar preenchidos!')
   }

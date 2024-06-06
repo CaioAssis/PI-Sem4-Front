@@ -1,7 +1,7 @@
-import { Input } from "@chakra-ui/react";
-import ClientList from "../client-list";
-import { useEffect, useState } from "react";
-import { Cliente } from "../../../interfaces/cliente";
+import { Input } from "@chakra-ui/react"
+import ClientList from "../client-list"
+import { useEffect, useState } from "react"
+import { Cliente } from "../../../interfaces/cliente"
 import api from "../../../../helpers/axios";
 
 export function UpdateClient() {
@@ -10,9 +10,9 @@ export function UpdateClient() {
   const [filtro, setFiltro] = useState<Cliente[]>([]);
   const [inputValue, setInputValue] = useState('');
 
-  useEffect(() => {
-    // Função para buscar clientes da API
-    const fetchClients = async () => {
+  function atualizar(){
+     // Função para buscar clientes da API
+     const fetchClients = async () => {
       try {
         const response = await api.get('/client/get'); // Substitua pelo endpoint real da sua API
         setClient(response.data);
@@ -23,6 +23,10 @@ export function UpdateClient() {
     };
 
     fetchClients();
+  }
+
+  useEffect(() => {
+    atualizar()
   }, []);
 
   useEffect(() => {
@@ -46,9 +50,10 @@ export function UpdateClient() {
         placeholder='Digite o nome do cliente' />
 
       {filtro.map((client) => (
-        <ClientList key={client.id} client={client} />
-      ))}
+        <ClientList key={client.id} client={client} reload={atualizar}/>
+      ))
+      }
     </>
   )
 }
-export default UpdateClient;
+export default UpdateClient
