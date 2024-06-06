@@ -1,11 +1,11 @@
-import React from 'react';
-import { Box, Button, ChakraProvider } from '@chakra-ui/react';
-import html2pdf from 'html2pdf.js';
-import VistoriaView from '../modal/vistoria/vistoria-view';
-import { Vistoria } from '../interfaces/vistoria';
+import React, { useState } from 'react'
+import { Box, Button, ChakraProvider } from '@chakra-ui/react'
+import html2pdf from 'html2pdf.js'
+import VistoriaView from '../modal/vistoria/vistoria-view'
+import { Vistoria } from '../interfaces/vistoria'
 
 interface Props {
-  vistoria: Vistoria;
+  vistoria: Vistoria
 }
 
 
@@ -15,8 +15,9 @@ const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria }, ref) =
   </Box>
 ));
 
-const CreatePdf: React.FC<Props> = ({ vistoria }) => {
-  const contentRef = React.useRef<HTMLDivElement>(null);
+const CreatePdf64: React.FC<Props> = ({ vistoria }) => {
+  const [anex, setAnex] = useState('vazio')
+  const contentRef = React.useRef<HTMLDivElement>(null)
 
   const handleDownloadPdf = () => {
     if (contentRef.current) {
@@ -28,20 +29,24 @@ const CreatePdf: React.FC<Props> = ({ vistoria }) => {
           html2canvas: { scale: 2, useCORS: true },
           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         })
-        .save();
+        .output('datauristring')
+        .then((pdfb64) => {
+          vistoria.anexo = pdfb64
+          console.log(vistoria.anexo)
+        })
     }
   };
-
+  
   return (
     <ChakraProvider>
       <Box padding="4" backgroundColor="gray.100" minHeight="100vh">
         <Button onClick={handleDownloadPdf} colorScheme="blue" marginBottom="4">
-          Download PDF
+          Concluir Vistoria
         </Button>
         <PdfContent vistoria={vistoria} ref={contentRef} />
       </Box>
     </ChakraProvider>
-  );
-};
+  )
+}
 
-export default CreatePdf;
+export default CreatePdf64

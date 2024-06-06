@@ -1,17 +1,14 @@
 import { Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import VistMaqView from "../vist-maq-view";
-import { Maquina } from "../../../interfaces/maquina";
-import { Text } from "@chakra-ui/react";
+import { Maquina } from "../../../../interfaces/maquina";
+import VistMaqList from "../vist-maq-list";
+import MockMaquinas from "../../../../mockup/mock-maquina";
 
-export default function VSearchView() {
-    const [maquina, setMaq] = useState<Maquina[]>([
-        { id: 1, descricao: 'chassi 1', modulos: [1, 2, 3], vistorias: [1, 2] },
-        { id: 2, descricao: 'chassi 2', modulos: [5, 3], vistorias: [3, 5] },
-        { id: 3, descricao: 'chassi 3', modulos: [5, 2], vistorias: [] },
-        { id: 4, descricao: 'chassi 4', modulos: [4, 1], vistorias: [4] },
-        { id: 5, descricao: 'chassi 5', modulos: [3, 4], vistorias: [] }])
+export default function VSearchMaq() {
+    const [maquina, setMaq] = useState<Maquina[]>(MockMaquinas)
     const [filtro, setFiltro] = useState<Maquina[]>([])
+
+
 
     const [inputValue, setInputValue] = useState('')
     useEffect(() => {
@@ -20,6 +17,7 @@ export default function VSearchView() {
         );
         setFiltro(filtrados);
     }, [inputValue])
+
 
     return (
         <>
@@ -35,7 +33,7 @@ export default function VSearchView() {
                 placeholder='Digite o número do chassi' />
 
             {filtro.map((maq) => (
-                <VistMaqView key={maq.id} maq={maq} />
+                <VistMaqList key={maq.id} maq={maq} />
             ))
             }
         </>

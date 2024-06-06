@@ -1,9 +1,8 @@
 import { Box, Button, Text } from "@chakra-ui/react"
-import { Maquina } from "../../../interfaces/maquina"
-import CreateModal from "../../create-modal"
+import { Maquina } from "../../../../interfaces/maquina"
+import CreateModal from "../../../create-modal"
 import { useState } from "react"
 import VistoriaNew from "../vistoria-new"
-import MockModulos from "../vistoria-new/mock-modulo"
 
 interface MaqProps {
     maq: Maquina

@@ -7,7 +7,10 @@ export default function ShowPDF({url}: ShowPDFProps) {
     return (
         <iframe
             src={url}
-            width="100%"
-            height="550px"/>
+            style={{
+                width: "100%",
+                height: "100vh",
+                border: "none"
+              }}/>
     )
 }
