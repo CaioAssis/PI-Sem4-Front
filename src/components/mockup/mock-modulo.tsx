@@ -4,9 +4,9 @@ import BaseImage2 from "./img-examplecopy";
 
 const MockModulos: ModuloDescricao[] = [
     { id: 1, titulo: 'Tipo de vistoria', descricao: 'Descrever o tipo de vistoria', imagem: BaseImage2 },
-    { id: 2, titulo: 'Conferir lataria', descricao: 'módulo legal 2', imagem: '' },
-    { id: 3, titulo: 'Conferir vidros e espelhos', descricao: 'módulo legal 3', imagem: ImageExample },
-    { id: 4, titulo: 'Conferir esteiras', descricao: 'módulo legal 4', imagem: '' },
-    { id: 5, titulo: 'Conferir rodas', descricao: 'módulo legal 5', imagem: '' },
+    { id: 2, titulo: 'Conferir lataria', descricao: 'Conferir estado da lataria da máquina', imagem: '' },
+    { id: 3, titulo: 'Conferir vidros', descricao: 'Conferir estado dos vidros e espelhos da máquina', imagem: ImageExample },
+    { id: 4, titulo: 'Conferir esteiras', descricao: 'Procurar defeitos nas esteiras da máquina', imagem: '' },
+    { id: 5, titulo: 'Conferir rodas', descricao: 'Procurar defeiros nas rodas das máquinas', imagem: '' },
   ];
 export default MockModulos
