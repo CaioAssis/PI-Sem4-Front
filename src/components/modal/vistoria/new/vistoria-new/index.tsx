@@ -1,10 +1,9 @@
 import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react';
-import { Maquina } from '../../../interfaces/maquina';
-import { ChangeEvent, useEffect, useState } from 'react';
-import MockModulos from '../../../mockup/mock-modulo';
-import ModalTextarea from '../../modal-textarea';
-import ModalInputImage from '../../modal-input-image';
-import { ModuloInspecao } from '../../../interfaces/moduloInspecao';
+import { Maquina } from '../../../../interfaces/maquina';
+import { ChangeEvent, useState } from 'react';
+import MockModulos from '../../../../mockup/mock-modulo';
+import ModalTextarea from '../../../modal-textarea';
+import ModalInputImage from '../../../modal-input-image';
 
 interface MaquinaProps {
     maq: Maquina
@@ -20,44 +19,24 @@ export function VistoriaNew({ maq, onClose }: MaquinaProps) {
         setVistDesc(newValues)
         console.log(vistDesc)
     };
-
     const [vistImg, setVistImg] = useState<string[]>([])
     const handleImageChange = (index: number, event: ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         const newValues = [...vistImg]
         if (files && files[0]) {
           const file = files[0];
-    
           const reader = new FileReader();
           reader.onloadend = () => {
             const base64String = reader.result as string;
             newValues[index] = base64String
             setVistImg(newValues);
-            
-            console.log(vistImg)
-            //console.log(base64String) //
+            //console.log(vistImg)
+            //console.log(base64String)
           };
           reader.readAsDataURL(file);
          
         }
     };
-
-
-    /*<Box>
-                                <Box>{imagem != '' && (<img src={imagem}
-                        alt="" height="200px" width="200px" />)}
-                    </Box>
-                        <ModalInputImage
-                            title="Upload de Imagem"
-                            onChange={handleFileChange}
-                        />
-                                </Box> */
-
-
-
-
-
-
 
     return (
         <>

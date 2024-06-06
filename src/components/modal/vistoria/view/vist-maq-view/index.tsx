@@ -1,26 +1,27 @@
 import { Box, Button, Text } from "@chakra-ui/react"
-import { Maquina } from "../../../interfaces/maquina"
+import { Maquina } from "../../../../interfaces/maquina"
 import { useEffect, useState } from "react"
-import { Vistoria } from "../../../interfaces/vistoria"
-import MockVist from "../../../mockup/mock-vist"
-import ModalButton from "../../modal-button"
-import CreateModal from "../../create-modal"
-import ShowPDF from "../../../iframe-pdf"
+import { Vistoria } from "../../../../interfaces/vistoria"
+import MockVist from "../../../../mockup/mock-vist"
+import ModalButton from "../../../modal-button"
+import CreateModal from "../../../create-modal"
+import ShowPDF from "../../../../iframe-pdf"
+import VistoriaList from "../../vistoria-list"
 
 interface MaqProps {
     maq: Maquina
 }
 export default function VistMaqView({ maq }: MaqProps) {
 
-    const handleOpenModalUpdate = () => {
-        setUpdateOpen(true)
+    const handleOpenModalUpdate = (id: number) => {
+        setUpdateOpen(id)
     }
 
     const handleCloseModalUpdate = () => {
-        setUpdateOpen(false)
+        setUpdateOpen(null)
     }
 
-    const [updateOpen, setUpdateOpen] = useState(false)
+    const [updateOpen, setUpdateOpen] = useState<number | null>(null)
     const [updateShow, setUpdateShow] = useState(false)
     const [vistorias, setVistorias] = useState<Vistoria[]>(MockVist)
     const [filtro, setFiltro] = useState<Vistoria[]>([])
@@ -47,13 +48,14 @@ export default function VistMaqView({ maq }: MaqProps) {
             {updateShow && filtro.map((e) =>
                 <>
                     <Box>
-                        <ModalButton label={e.id.toString()} onClick={handleOpenModalUpdate} />
+                        <VistoriaList vistoria={e}/>
+                        <ModalButton label={e.data} onClick={() => handleOpenModalUpdate(e.id)} display="flex" justifyContent="flex-start" />
                     </Box>
-                    <CreateModal label='Vistoria' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
+                    <CreateModal label='Vistoria' isOpen={updateOpen === e.id} onClose={handleCloseModalUpdate}>
                         <ShowPDF url={e.anexo} onClose={handleCloseModalUpdate} />
                     </CreateModal>
                 </>
             )}
         </>
     )
-}//vistoria list
+}

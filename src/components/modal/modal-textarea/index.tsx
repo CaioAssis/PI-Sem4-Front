@@ -1,7 +1,6 @@
 import { Button, Flex, Text, Textarea, useDisclosure } from "@chakra-ui/react"
 import ImagePopup from "./image-popup"
 import { useState } from "react"
-import ShowPDF from "../../iframe-pdf"
 interface InputProps {
     title: string
     placeholder: string

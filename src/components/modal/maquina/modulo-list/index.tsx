@@ -1,7 +1,5 @@
-import { Box, Button, Grid, GridItem, Text } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
-import CreateModal from "../../create-modal"
-import { useState } from "react"
 
 interface ModuloProps {
     modulo: ModuloDescricao

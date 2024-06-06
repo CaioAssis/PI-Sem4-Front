@@ -1,6 +1,5 @@
 import { Button, Divider, Grid, GridItem, Select, Text } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
-import CreateModal from '../../create-modal';
 import { useState } from 'react';
 import api from '../../../../helpers/axios';
 

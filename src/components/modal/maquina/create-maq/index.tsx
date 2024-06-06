@@ -1,10 +1,10 @@
 import { Box, Button, Divider, Grid, GridItem, Input } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
-import CreateModal from '../../create-modal';
 import { useEffect, useState } from 'react';
-import api from '../../../../helpers/axios';
+//import api from '../../../../helpers/axios';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import ModuloList from '../modulo-list';
+import MockModulos from '../../../mockup/mock-modulo';
 
 interface Props {
   onClose: () => void;
@@ -26,14 +26,7 @@ export function CreateMaq({ onClose }: Props) {
   }
 
   const [descricao, setDescricao] = useState('');
-  const [vistorias, setVistorias] = useState('');
-  const [modulos, setModulo] = useState<ModuloDescricao[]>([
-    { id: 1, titulo: 'módulo 1', descricao: 'módulo legal 1', imagem: '.png' },
-    { id: 2, titulo: 'módulo 2', descricao: 'módulo legal 2', imagem: '.png' },
-    { id: 3, titulo: 'módulo 3', descricao: 'módulo legal 3', imagem: '.png' },
-    { id: 4, titulo: 'módulo 4', descricao: 'módulo legal 4', imagem: '.png' },
-    { id: 5, titulo: 'módulo 5', descricao: 'módulo legal 5', imagem: '.png' },
-  ]);
+  const [modulos, setModulo] = useState<ModuloDescricao[]>(MockModulos);
 
   const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
   const [inputValue, setInputValue] = useState('');
