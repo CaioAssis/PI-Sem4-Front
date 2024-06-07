@@ -7,6 +7,8 @@ import Vist from './pages/vist'
 import VistCreate from './pages/vist-create'
 import Maquina from './pages/maquina'
 import Modulo from './pages/modulo'
+import Login from './components/login/index'
+import Home from './pages/home/index'
 
 const routes = createBrowserRouter([
   { path: '/', errorElement: <NotFound /> },
@@ -16,7 +18,9 @@ const routes = createBrowserRouter([
   { path: '/vistoria', element: <Vist /> },
   { path: '/initVistoria', element: <VistCreate /> },
   { path: '/maquina', element: <Maquina /> },
-  { path: '/modulo', element: <Modulo /> }
+  { path: '/modulo', element: <Modulo /> },
+  {path:'/Login', element: <Login />},
+  {path: '/Home', element: <Home />}
 ])
 
 export default routes //prof usou router
