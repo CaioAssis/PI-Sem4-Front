@@ -37,7 +37,7 @@ export function CreateModulo({ onClose }: Props) {
         imagem: imagem? imagem:''
       };
 
-
+      console.log (newModulo)
       onClose();
 
 

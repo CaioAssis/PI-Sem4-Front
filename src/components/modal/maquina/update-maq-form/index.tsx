@@ -46,7 +46,7 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
     const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
     const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
 
-    const [modulos, setModulos] = useState<ModuloDescricao[]>(MockModulos)
+    const [modulos] = useState<ModuloDescricao[]>(MockModulos)
 
     useEffect(() => {
         const filtrados = modulos.filter((item) =>

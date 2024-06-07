@@ -103,7 +103,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
   return (
-    <Link to={url} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link to={url} style={{ textDecoration: 'none' }}>
       <Flex
         align="center"
         p="4"

@@ -5,7 +5,7 @@ import { Maquina } from "../../../../interfaces/maquina";
 import MockMaquinas from "../../../../mockup/mock-maquina";
 
 export default function VSearchView() {
-    const [maquina, setMaq] = useState<Maquina[]>(MockMaquinas)
+    const [maquina] = useState<Maquina[]>(MockMaquinas)
     const [filtro, setFiltro] = useState<Maquina[]>([])
 
     const [inputValue, setInputValue] = useState('')

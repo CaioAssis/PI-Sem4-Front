@@ -23,7 +23,7 @@ export default function VistMaqView({ maq }: MaqProps) {
 
     const [updateOpen, setUpdateOpen] = useState<number | null>(null)
     const [updateShow, setUpdateShow] = useState(false)
-    const [vistorias, setVistorias] = useState<Vistoria[]>(MockVist)
+    const [vistorias] = useState<Vistoria[]>(MockVist)
     const [filtro, setFiltro] = useState<Vistoria[]>([])
 
     const handleUpdateShow = () => {

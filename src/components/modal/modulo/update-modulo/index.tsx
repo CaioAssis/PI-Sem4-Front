@@ -6,7 +6,7 @@ import MockModulos from "../../../mockup/mock-modulo"
 
 export function UpdateModulo() {
 
-  const [modulo, setModulo] = useState<ModuloDescricao[]>(MockModulos)
+  const [modulo] = useState<ModuloDescricao[]>(MockModulos)
 
   const [filtro, setFiltro] = useState<ModuloDescricao[]>([])
 

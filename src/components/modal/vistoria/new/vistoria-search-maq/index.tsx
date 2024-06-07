@@ -5,7 +5,7 @@ import VistMaqList from "../vist-maq-list";
 import MockMaquinas from "../../../../mockup/mock-maquina";
 
 export default function VSearchMaq() {
-    const [maquina, setMaq] = useState<Maquina[]>(MockMaquinas)
+    const [maquina] = useState<Maquina[]>(MockMaquinas)
     const [filtro, setFiltro] = useState<Maquina[]>([])
 
 
