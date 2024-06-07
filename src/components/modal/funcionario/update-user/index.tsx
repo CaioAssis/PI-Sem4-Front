@@ -5,7 +5,6 @@ import { Funcionario } from "../../../interfaces/funcionario"
 import api from "../../../../helpers/axios"
 
 export function UpdateUser() {
-
  
   const [user, setUser] = useState<Funcionario[]>([
   ])
@@ -16,7 +15,7 @@ export function UpdateUser() {
   function atualizar(){
     const fetchUsers = async () => {
       try{
-    const filtrados = await api.get('/func/get')
+    const filtrados = await api.get('/usuario/get')
     setUser(filtrados.data)
     setFiltro(filtrados.data)
       }

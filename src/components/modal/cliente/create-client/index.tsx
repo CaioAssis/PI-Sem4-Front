@@ -16,7 +16,7 @@ export function CreateClient({ onClose }: Props) {
         cpf: cpf,
         contato: contato
       }
-      api.post(`/client/save`, newClient)
+      api.post(`/cliente/save`, newClient)
       .then(()=>onClose())
       .catch(()=>console.log("Erro"))
       

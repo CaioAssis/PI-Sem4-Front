@@ -22,12 +22,11 @@ export function UpdateUserForm({ user, onClose, reload }: UserProps) {
                 senha: userData.senha,
                 role: userData.role
             }
-            console.log(newUser)
-            reload()
-
             
-            api.put(`/func/update/${user.id}`, newUser)
-            .then(()=> onClose())
+            api.put(`/usuario/update/${user.id}`, newUser)
+            .then(()=> {
+                onClose()
+                reload()})
             .catch(error => {console.log(error)})
 
         }

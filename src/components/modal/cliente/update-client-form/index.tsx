@@ -21,7 +21,7 @@ export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
             }
 
             console.log(newClient.nome)
-            api.put(`/client/update/${client.id}`, newClient)
+            api.put(`/cliente/update/${client.id}`, newClient)
             .then(()=> {
                 onClose()
                 reload()

@@ -18,7 +18,7 @@ export function CreateUser({ onClose }: Props) {
         senha: userData.senha,
         role: userData.role
       }
-       api.post('/func/save', newUser)
+       api.post('/usuario/save', newUser)
       .then(()=> {
       onClose() 
     }).catch(()=>{alert("Error")})

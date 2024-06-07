@@ -14,7 +14,7 @@ export function UpdateClient() {
      // Função para buscar clientes da API
      const fetchClients = async () => {
       try {
-        const response = await api.get('/client/get'); // Substitua pelo endpoint real da sua API
+        const response = await api.get('/cliente/get'); // Substitua pelo endpoint real da sua API
         setClient(response.data);
         setFiltro(response.data); // Inicialmente, mostrar todos os clientes
       } catch (error) {
