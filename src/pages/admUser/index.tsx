@@ -7,7 +7,6 @@ import CreateModal from "../../components/modal/create-modal";
 
 function AdmUser() {
     const [createOpen, setCreateOpen] = useState(false)
-    const [updateOpen, setUpdateOpen] = useState(false)
     const [updateShow, setUpdateShow] = useState(false)
 
     const handleOpenModalCreate = () => {
@@ -17,15 +16,6 @@ function AdmUser() {
     const handleCloseModalCreate = () => {
         setCreateOpen(false)
     }
-
-    const handleOpenModalUpdate = () => {
-        setUpdateOpen(true)
-    }
-
-    const handleCloseModalUpdate = () => {
-        setUpdateOpen(false)
-    }
-
     const handleUpdateShow = () => {
         setUpdateShow(!updateShow);
       };

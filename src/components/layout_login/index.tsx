@@ -1,5 +1,4 @@
-import { Grid, GridItem, Flex } from "@chakra-ui/react"
-import  SimpleCard from "../login/index"
+import { Grid, GridItem } from "@chakra-ui/react"
 interface Props {
     children: React.ReactNode
 }

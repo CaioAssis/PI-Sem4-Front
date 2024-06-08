@@ -26,7 +26,7 @@ export function CreateMaq({ onClose }: Props) {
   }
 
   const [descricao, setDescricao] = useState('');
-  const [modulos, setModulo] = useState<ModuloDescricao[]>(MockModulos);
+  const [modulos] = useState<ModuloDescricao[]>(MockModulos);
 
   const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
   const [inputValue, setInputValue] = useState('');

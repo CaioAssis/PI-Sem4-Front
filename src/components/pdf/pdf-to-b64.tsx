@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Button, ChakraProvider } from '@chakra-ui/react'
 import html2pdf from 'html2pdf.js'
 import VistoriaView from '../modal/vistoria/vistoria-view'
@@ -16,7 +16,6 @@ const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria }, ref) =
 ));
 
 const CreatePdf64: React.FC<Props> = ({ vistoria }) => {
-  const [anex, setAnex] = useState('vazio')
   const contentRef = React.useRef<HTMLDivElement>(null)
 
   const handleDownloadPdf = () => {

@@ -27,7 +27,7 @@ export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
                 reload()
             }
             )
-            .catch(error => {console.log("Error")})
+            .catch(() => {console.log("Error")})
 
         }
         else alert('Os campos precisam estar preenchidos!')

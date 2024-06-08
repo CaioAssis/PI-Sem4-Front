@@ -1,4 +1,4 @@
-import { Grid, GridItem, Flex, Box } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import  SimpleSidebar  from "../sidebar/index"
 interface Props {
     children: React.ReactNode
