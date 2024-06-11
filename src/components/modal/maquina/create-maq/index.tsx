@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import ModuloList from '../modulo-list';
 import MockModulos from '../../../mockup/mock-modulo';
+import api from '../../../../helpers/axios';
 
 interface Props {
   onClose: () => void;
@@ -18,26 +19,48 @@ export function CreateMaq({ onClose }: Props) {
         modulos: adiciona? adiciona:[]
       };
       console.log(newMaq)
-
-      onClose();
+      api.post(`/maquina/save`, newMaq)
+      .then(()=>onClose())
+      .catch((e)=>console.log("Erro: " + e))
     } else {
       alert('Os campos precisam estar preenchidos!');
     }
   }
+  
+  function atualizarModulos(){
+    const fetchMod = async () => {
+      try{
+    const filtrados = await api.get('/modulo/get')
+    setModulos(filtrados.data)
+    setFiltro(filtrados.data)
+      }
+      catch(error)
+      {
+        console.error("Erro ao buscar usuário", error)
+      }
+    }
+
+    fetchMod();
+  }
+
+  useEffect(()=>{
+    atualizarModulos()
+  }, [])
+
 
   const [descricao, setDescricao] = useState('');
-  const [modulos] = useState<ModuloDescricao[]>(MockModulos);
+  const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
 
   const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [adiciona, setAdiciona] = useState<ModuloDescricao[]>([]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     const filtrados = modulos.filter((item) =>
       item.titulo.toLowerCase().includes(inputValue.toLowerCase())
     );
     setFiltro(filtrados);
-  }, [inputValue, modulos]);
+  }, [inputValue, modulos]);*/
 
   function addModulo(modulo: ModuloDescricao) {
     if (!adiciona.some((item) => item.id === modulo.id)) {
@@ -47,6 +70,10 @@ export function CreateMaq({ onClose }: Props) {
 
   function removeModulo(modulo: ModuloDescricao) {
     setAdiciona(adiciona.filter((item) => item.id !== modulo.id));
+  }
+
+  function teste(){
+    console.log(modulos)
   }
 
   return (
@@ -107,7 +134,7 @@ export function CreateMaq({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={2} justifySelf="end">
-          <Button onClick={onClose}>Cancelar</Button>
+          <Button onClick={teste}>Cancelar</Button>
         </GridItem>
       </Grid>
     </>
