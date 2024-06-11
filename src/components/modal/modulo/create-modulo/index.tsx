@@ -2,6 +2,7 @@ import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { useState } from 'react';
 import ModalInputImage from '../../modal-input-image';
+import api from '../../../../helpers/axios';
 
 interface Props {
   onClose: () => void
@@ -22,7 +23,7 @@ export function CreateModulo({ onClose }: Props) {
         const base64String = reader.result as string;
         setImagem(base64String);
 
-        console.log(base64String) //
+        //console.log(base64String) //
       };
       reader.readAsDataURL(file);
 
@@ -37,10 +38,9 @@ export function CreateModulo({ onClose }: Props) {
         imagem: imagem? imagem:''
       };
 
-      console.log (newModulo)
-      onClose();
-
-
+      api.post(`/modulo/save`, newModulo)
+      .then(()=>onClose())
+      .catch((e)=>console.log("Erro: " + e))
 
     } else {
       alert('Os campos precisam estar preenchidos!');
