@@ -1,34 +1,34 @@
-import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react';
-import ModalInput from '../../modal-input';
-import { useState } from 'react';
-import ModalInputImage from '../../modal-input-image';
-import api from '../../../../helpers/axios';
+import { Box, Button, Divider, Grid, GridItem } from '@chakra-ui/react'
+import ModalInput from '../../modal-input'
+import { useState } from 'react'
+import ModalInputImage from '../../modal-input-image'
+import api from '../../../../helpers/axios'
 
 interface Props {
   onClose: () => void
 }
 
 export function CreateModulo({ onClose }: Props) {
-  const [titulo, setTitulo] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [imagem, setImagem] = useState('');
+  const [titulo, setTitulo] = useState('')
+  const [descricao, setDescricao] = useState('')
+  const [imagem, setImagem] = useState('')
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
+    const files = event.target.files
     if (files && files[0]) {
-      const file = files[0];
+      const file = files[0]
 
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setImagem(base64String);
+        const base64String = reader.result as string
+        setImagem(base64String)
 
         //console.log(base64String) //
-      };
-      reader.readAsDataURL(file);
+      }
+      reader.readAsDataURL(file)
 
     }
-  };
+  }
 
   function addModulo() {
     if (titulo !== '' && descricao !== '') {
@@ -36,14 +36,14 @@ export function CreateModulo({ onClose }: Props) {
         titulo: titulo,
         descricao: descricao,
         imagem: imagem ? imagem : ''
-      };
-      console.log(newModulo)
+      }
+
       api.post(`/modulo/save`, newModulo)
         .then(() => onClose())
         .catch((e) => console.log("Erro: " + e))
 
     } else {
-      alert('Os campos precisam estar preenchidos!');
+      alert('Os campos precisam estar preenchidos!')
     }
   }
 
@@ -89,7 +89,7 @@ export function CreateModulo({ onClose }: Props) {
 
       </Grid>
     </>
-  );
+  )
 }
 
-export default CreateModulo;
+export default CreateModulo
