@@ -48,7 +48,7 @@ export function UpdateModuloForm({ modulo, onClose, reload }: ModuloProps) {
             const base64String = reader.result as string;
             setImagem(base64String);
     
-            //console.log(base64String) //
+            //console.log(base64String.length) //
           };
           reader.readAsDataURL(file);
          

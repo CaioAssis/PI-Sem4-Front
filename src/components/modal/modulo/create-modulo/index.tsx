@@ -35,12 +35,12 @@ export function CreateModulo({ onClose }: Props) {
       const newModulo = {
         titulo: titulo,
         descricao: descricao,
-        imagem: imagem? imagem:''
+        imagem: imagem ? imagem : ''
       };
-
+      console.log(newModulo)
       api.post(`/modulo/save`, newModulo)
-      .then(()=>onClose())
-      .catch((e)=>console.log("Erro: " + e))
+        .then(() => onClose())
+        .catch((e) => console.log("Erro: " + e))
 
     } else {
       alert('Os campos precisam estar preenchidos!');
