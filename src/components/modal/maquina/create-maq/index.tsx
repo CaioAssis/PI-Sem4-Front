@@ -1,10 +1,8 @@
 import { Box, Button, Divider, Grid, GridItem, Input } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { useEffect, useState } from 'react';
-//import api from '../../../../helpers/axios';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import ModuloList from '../modulo-list';
-import MockModulos from '../../../mockup/mock-modulo';
 import api from '../../../../helpers/axios';
 
 interface Props {
