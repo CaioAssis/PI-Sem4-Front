@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import ModuloList from '../modulo-list';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import MockModulos from '../../../mockup/mock-modulo';
+import api from '../../../../helpers/axios';
 
 interface MaquinaProps {
     maq: Maquina
@@ -13,26 +14,54 @@ interface MaquinaProps {
 
 export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
 
+    const [inputValue, setInputValue] = useState('');
+    const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
+
+    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>([])
+    const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
+
     function editMaq() {
         if (maq.descricao != '') {
-            const newMaq = {
+            const updateMaq = {
                 descricao: maq.descricao,
-                modulos: adiciona? adiciona:[]
+                modulos: adiciona ? adiciona : []
             }
 
-            console.log(newMaq)
-            onClose()
-
+            console.log(updateMaq)
+            api.put(`/maquina/update`, updateMaq)
+                .then(() => onClose())
+                .catch((e) => console.log("Erro: " + e))
         }
+
+
         else alert('Os campos precisam estar preenchidos!')
     }
 
+    function atualizarModulos() {
+        const fetchMod = async () => {
+            try {
+                const filtrados = await api.get('/modulo/get')
+                setModulos(filtrados.data)
+                setFiltro(filtrados.data)
+            }
+            catch (error) {
+                console.error("Erro ao buscar usuário", error)
+            }
+        }
+
+        fetchMod();
+    }
+
+    useEffect(() => {
+        atualizarModulos()
+    }, [])
+
     const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
         return numbers.map(num => ({
-            id: MockModulos[num-1].id,
-            titulo: MockModulos[num-1].titulo,
-            descricao: MockModulos[num-1].descricao,
-            imagem: MockModulos[num-1].imagem,
+            id: MockModulos[num - 1].id,
+            titulo: MockModulos[num - 1].titulo,
+            descricao: MockModulos[num - 1].descricao,
+            imagem: MockModulos[num - 1].imagem,
         }));
     }
 
@@ -41,12 +70,6 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
         descricao: maq.descricao,
         modulos: maq.modulos
     })
-
-    const [inputValue, setInputValue] = useState('');
-    const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
-    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
-
-    const [modulos] = useState<ModuloDescricao[]>(MockModulos)
 
     useEffect(() => {
         const filtrados = modulos.filter((item) =>
