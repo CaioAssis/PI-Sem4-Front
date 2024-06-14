@@ -24,7 +24,7 @@ function Modulo() {
     return (
         <Layout>
 
-            <ModalButton label='Criar módulo' onClick={handleOpenModalCreate} />
+            <ModalButton label='Criar módulo' onClick={handleOpenModalCreate}/>
             <CreateModal label='Criar módulo' isOpen={createOpen} onClose={handleCloseModalCreate}>
                 <CreateModulo onClose={handleCloseModalCreate}/>
             </CreateModal>

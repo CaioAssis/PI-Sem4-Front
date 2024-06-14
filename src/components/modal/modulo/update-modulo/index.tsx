@@ -38,10 +38,13 @@ export function UpdateModulo() {
   return (
     <>
       <Input
+        display='block'
+        alignItems="center"
+        justifyContent="center"
         type='text'
         value={inputValue}
         bg='white'
-        w='80%'
+        w='90%'
         onChange={
           (event) => {
             setInputValue(event.target.value);

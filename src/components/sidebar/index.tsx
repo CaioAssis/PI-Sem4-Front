@@ -23,12 +23,13 @@ import {
 import { GiFarmTractor, GiHamburgerMenu } from 'react-icons/gi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 interface LinkItemProps {
   name: string;
   icon: IconType;
   url: string
 }
+
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Usuario', icon: VscAccount, url: "/admUser" },
   { name: 'Cliente', icon: VscPerson, url: "/admClient" },
@@ -74,6 +75,7 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
+    boxShadow={'0px 0px 13px -2px rgba(0,0,0,0.75)'}
       bg={useColorModeValue('Yellow', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
@@ -88,7 +90,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} url={link.url}>
+        <NavItem key={link.name} icon={link.icon} url={link.url} >
           {link.name}
         </NavItem>
       ))}
@@ -102,6 +104,17 @@ interface NavItemProps extends FlexProps {
   url: string
 }
 const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
+  // console.log(useLocation().pathname)
+  let bg:string
+  let color:string
+  if(url === useLocation().pathname){
+    bg='#49C855'
+    color='white'
+  }
+  else{
+    bg=''
+    color=''
+  }
   return (
     <Link to={url} style={{ textDecoration: 'none' }}>
       <Flex
@@ -111,6 +124,8 @@ const NavItem = ({ icon, children, url, ...rest }: NavItemProps) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
+        bg={bg}
+        color={color}
         _hover={{
           bg: '#49C855',
           color: 'white',
