@@ -17,9 +17,18 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
     const [inputValue, setInputValue] = useState('');
     const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
 
-    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>([])
     const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
 
+    const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
+        return numbers.map(num => ({
+            id: MockModulos[num - 1].id,
+            titulo: MockModulos[num - 1].titulo,
+            descricao: MockModulos[num - 1].descricao,
+            imagem: MockModulos[num - 1].imagem,
+        }));
+    }
+
+    const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
     function editMaq() {
         if (maq.descricao != '') {
             const updateMaq = {
@@ -54,15 +63,6 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
     useEffect(() => {
         atualizarModulos()
     }, [])
-
-    const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
-        return numbers.map(num => ({
-            id: MockModulos[num - 1].id,
-            titulo: MockModulos[num - 1].titulo,
-            descricao: MockModulos[num - 1].descricao,
-            imagem: MockModulos[num - 1].imagem,
-        }));
-    }
 
     const [formMaq, setFormMaq] = useState({
         id: maq.id,
