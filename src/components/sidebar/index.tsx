@@ -24,6 +24,8 @@ import { GiFarmTractor, GiHamburgerMenu } from 'react-icons/gi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { Link, useLocation } from "react-router-dom"
+import DeereLogo from '../../assets/deereLogo.png'
+
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -85,7 +87,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-        <img src="https://cdn.freebiesupply.com/logos/large/2x/john-deere-4-logo-png-transparent.png"></img>
+        <img src={DeereLogo}></img>
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
