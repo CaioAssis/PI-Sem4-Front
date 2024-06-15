@@ -33,7 +33,6 @@ export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
                 .catch((e) => console.log("Erro: " + e))
         }
 
-
         else alert('Os campos precisam estar preenchidos!')
     }
 
