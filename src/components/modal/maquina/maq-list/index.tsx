@@ -3,11 +3,14 @@ import { Maquina } from "../../../interfaces/maquina"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
 import UpdateMaqForm from "../update-maq-form"
+import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
 
 interface MaqProps {
     maq: Maquina
+    reload: () => void
+    modulos: ModuloDescricao[]
 }
-export default function MaqList({ maq }: MaqProps) {
+export default function MaqList({ maq, modulos, reload }: MaqProps) {
 
 
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -28,7 +31,7 @@ export default function MaqList({ maq }: MaqProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Máquina' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateMaqForm maq={maq} onClose={handleCloseModalUpdate} />
+                <UpdateMaqForm maq={maq} onClose={handleCloseModalUpdate} modulos={modulos} reload={reload}/>
             </CreateModal>
         </Box>
     )

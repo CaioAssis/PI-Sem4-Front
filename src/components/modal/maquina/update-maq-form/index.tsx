@@ -4,65 +4,49 @@ import { Maquina } from '../../../interfaces/maquina';
 import { useEffect, useState } from 'react';
 import ModuloList from '../modulo-list';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
-import MockModulos from '../../../mockup/mock-modulo';
 import api from '../../../../helpers/axios';
 
 interface MaquinaProps {
     maq: Maquina
     onClose: () => void
+    modulos: ModuloDescricao[]
+    reload: () => void
 }
 
-export function UpdateClientForm({ maq, onClose }: MaquinaProps) {
+export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps) {
 
     const [inputValue, setInputValue] = useState('');
     const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
 
-    const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
-
+    //const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
     const createModuloFromNumbers = (numbers: number[]): ModuloDescricao[] => {
         return numbers.map(num => ({
-            id: MockModulos[num - 1].id,
-            titulo: MockModulos[num - 1].titulo,
-            descricao: MockModulos[num - 1].descricao,
-            imagem: MockModulos[num - 1].imagem,
+            id: modulos[num - 1].id,
+            titulo: modulos[num - 1].titulo,
+            descricao: modulos[num - 1].descricao,
+            imagem: modulos[num - 1].imagem,
         }));
     }
-
+    //const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(modulos.filter((item) => maq.modulos.includes(item.id)))
     const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
     function editMaq() {
         if (maq.descricao != '') {
             const updateMaq = {
-                descricao: maq.descricao,
+                descricao: formMaq.descricao,
                 modulos: adiciona ? adiciona : []
             }
 
             console.log(updateMaq)
-            api.put(`/maquina/update`, updateMaq)
-                .then(() => onClose())
+            api.put(`/maquina/update/${maq.id}`, updateMaq)
+                .then(() => {
+                    onClose()
+                    reload()
+                })
                 .catch((e) => console.log("Erro: " + e))
         }
 
         else alert('Os campos precisam estar preenchidos!')
     }
-
-    function atualizarModulos() {
-        const fetchMod = async () => {
-            try {
-                const filtrados = await api.get('/modulo/get')
-                setModulos(filtrados.data)
-                setFiltro(filtrados.data)
-            }
-            catch (error) {
-                console.error("Erro ao buscar usuário", error)
-            }
-        }
-
-        fetchMod();
-    }
-
-    useEffect(() => {
-        atualizarModulos()
-    }, [])
 
     const [formMaq, setFormMaq] = useState({
         id: maq.id,

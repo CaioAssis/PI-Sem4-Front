@@ -1,34 +1,55 @@
 import { Input } from "@chakra-ui/react"
 import MaqList from "../maq-list"
 import { useEffect, useState } from "react"
-import { Maquina } from "../../../interfaces/maquina"
+import { Maquina, maquinaGet } from "../../../interfaces/maquina"
 import api from "../../../../helpers/axios"
+import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
+
 
 export function UpdateMaq() {
 
-  const [maquina, setMaquina] = useState<Maquina[]>([]) 
+  const [maquina, setMaquina] = useState<Maquina[]>([])
   const [filtro, setFiltro] = useState<Maquina[]>([])
-
   const [inputValue, setInputValue] = useState('')
+  const [getModulos, setGetModulos] = useState<ModuloDescricao[]>([])
 
-  function atualizar(){
+  function atualizar() {
     const fetchUsers = async () => {
-      try{
-    const filtrados = await api.get('/maquina/get')
-    console.log(filtrados)
-    setMaquina(filtrados.data)
-    setFiltro(filtrados.data)
+      try {
+        const response = await api.get('/maquina/get')
+        const maqGet: maquinaGet[] = response.data
+        setMaquina(maqGet.map(item => ({
+          id: item.id,
+          descricao: item.descricao,
+          vistorias: [],
+          modulos: item.modulosDescricao.map(modulo => modulo.id)
+        })))
+        setFiltro((maqGet.map(item => ({
+          id: item.id,
+          descricao: item.descricao,
+          vistorias: [],
+          modulos: item.modulosDescricao.map(modulo => modulo.id)
+        }))))
       }
-      catch(error)
-      {
+      catch (error) {
         console.error("Erro ao buscar usuário", error)
       }
     }
 
-    fetchUsers();
+    const fetchMod = async () => {
+      try {
+        const filtrados = await api.get('/modulo/get')
+        setGetModulos(filtrados.data)
+      }
+      catch (error) {
+        console.error("Erro ao buscar usuário", error)
+      }
+    }
+    fetchUsers()
+    fetchMod()
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     atualizar()
   }, [])
 
@@ -52,7 +73,7 @@ export function UpdateMaq() {
         placeholder='Digite o número do chassi' />
 
       {filtro.map((maq) => (
-        <MaqList key={maq.id} maq={maq} />
+        <MaqList key={maq.id} maq={maq} reload={atualizar} modulos={getModulos} />
       ))
       }
     </>
