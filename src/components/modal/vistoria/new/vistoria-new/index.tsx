@@ -1,16 +1,17 @@
 import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react';
 import { Maquina } from '../../../../interfaces/maquina';
 import { ChangeEvent, useState } from 'react';
-import MockModulos from '../../../../mockup/mock-modulo';
 import ModalTextarea from '../../../modal-textarea';
 import ModalInputImage from '../../../modal-input-image';
+import { ModuloDescricao } from '../../../../interfaces/moduloDescricao';
 
 interface MaquinaProps {
     maq: Maquina
     onClose: () => void
+    modulos: ModuloDescricao[]
 }
 
-export function VistoriaNew({ maq, onClose }: MaquinaProps) {
+export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
 
     const [vistDesc, setVistDesc] = useState<string[]>([])
     const handleTextareaChange = (index: number, event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -46,9 +47,9 @@ export function VistoriaNew({ maq, onClose }: MaquinaProps) {
                         <Box marginBottom='20px' w=''>
 
                             <ModalTextarea
-                                title={MockModulos[modulo - 1].titulo}
-                                placeholder={MockModulos[modulo - 1].descricao}
-                                imagem={MockModulos[modulo - 1].imagem}
+                                title={modulos[modulo - 1].titulo}
+                                placeholder={modulos[modulo - 1].descricao}
+                                imagem={modulos[modulo - 1].imagem}
                                 onChange={(event) => handleTextareaChange(index, event)} />
 
                             <Box>
