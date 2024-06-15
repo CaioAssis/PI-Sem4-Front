@@ -3,13 +3,15 @@ import ModalInput from '../../modal-input';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import { useState } from 'react';
 import ModalInputImage from '../../modal-input-image';
+import api from '../../../../helpers/axios';
 
 interface ModuloProps {
     modulo: ModuloDescricao
     onClose: () => void
+    reload: () => void
 }
 
-export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
+export function UpdateModuloForm({ modulo, onClose, reload }: ModuloProps) {
 
     function editModulo() {
         if (titulo != '' && descricao != '') {
@@ -18,9 +20,15 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
                 descricao: descricao,
                 imagem: imagem? imagem : ''
             }
+            //console.log(newModulo)
+            api.put(`/modulo/update/${modulo.id}`, newModulo)
+            .then(()=> {
+                onClose()
+                reload()
+            }
+            )
 
-            console.log(newModulo)
-            onClose()
+            .catch(() => {console.log("Error")})
 
         }
         else alert('Os campos precisam estar preenchidos!')
@@ -40,7 +48,7 @@ export function UpdateModuloForm({ modulo, onClose }: ModuloProps) {
             const base64String = reader.result as string;
             setImagem(base64String);
     
-            //console.log(base64String) //
+            //console.log(base64String.length) //
           };
           reader.readAsDataURL(file);
          

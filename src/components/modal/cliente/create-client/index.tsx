@@ -17,7 +17,7 @@ export function CreateClient({ onClose }: Props) {
       }
       api.post(`/cliente/save`, newClient)
       .then(()=>onClose())
-      .catch(()=>console.log("Erro"))
+      .catch((e)=>console.log("Erro: " + e))
       
     }
     else alert('Os campos precisam estar preenchidos!')

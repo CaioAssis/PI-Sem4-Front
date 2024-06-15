@@ -6,8 +6,9 @@ import UpdateModuloForm from "../update-modulo-form"
 
 interface ModuloProps {
     modulo: ModuloDescricao
+    reload: () => void
 }
-export default function ModuloList({ modulo }: ModuloProps) {
+export default function ModuloList({ modulo, reload }: ModuloProps) {
 
 
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -28,7 +29,7 @@ export default function ModuloList({ modulo }: ModuloProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Módulo' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateModuloForm modulo={modulo} onClose={handleCloseModalUpdate} />
+                <UpdateModuloForm modulo={modulo} onClose={handleCloseModalUpdate} reload={reload} />
             </CreateModal>
         </Box>
     )

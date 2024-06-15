@@ -19,6 +19,7 @@ export default function VSearchView() {
     return (
         <>
             <Input
+            h={'50px'}
                 type='text'
                 value={inputValue}
                 bg='white'
