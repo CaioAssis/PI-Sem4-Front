@@ -5,9 +5,8 @@ import ModalTextarea from '../../../modal-textarea';
 import ModalInputImage from '../../../modal-input-image';
 import { ModuloDescricao } from '../../../../interfaces/moduloDescricao';
 import { Vistoria } from '../../../../interfaces/vistoria';
-import api from '../../../../../helpers/axios';
+//import api from '../../../../../helpers/axios';
 import CreatePdf64 from '../../../../pdf/pdf-to-b64';
-import CreateModal from '../../../create-modal';
 
 interface MaquinaProps {
     maq: Maquina
