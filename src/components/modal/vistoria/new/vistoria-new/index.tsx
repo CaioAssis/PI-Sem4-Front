@@ -5,7 +5,6 @@ import ModalTextarea from '../../../modal-textarea'
 import ModalInputImage from '../../../modal-input-image'
 import { ModuloDescricao } from '../../../../interfaces/moduloDescricao'
 import { Vistoria } from '../../../../interfaces/vistoria'
-//import api from '../../../../../helpers/axios'
 import CreatePdf64 from '../../../../pdf/pdf-to-b64'
 
 interface MaquinaProps {
@@ -20,7 +19,7 @@ export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
     const newValues = [...vistDesc]
     newValues[index] = event.target.value
     setVistDesc(newValues)
-    console.log(vistDesc)
+    //console.log(vistDesc)
   }
 
   const [vistImg, setVistImg] = useState<string[]>([])
@@ -34,6 +33,7 @@ export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
         const base64String = reader.result as string
         newValues[index] = base64String
         setVistImg(newValues)
+        //console.log(vistImg)
       }
       reader.readAsDataURL(file)
     }
@@ -44,7 +44,7 @@ export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
     const newValues = [...vistChck]
     newValues[index] = event.target.checked
     setVistChck(newValues)
-    console.log(vistChck)
+    //console.log(vistChck)
   }
 
   const [vistoria, setVistoria] = useState<Vistoria | null>(null)
@@ -127,7 +127,7 @@ export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
           <Button onClick={onClose}>Cancelar</Button>
         </GridItem>
       </Grid>
-      {showPdf && vistoria && <CreatePdf64 vistoria={vistoria} modulos={modulos} maquina={maq}/>}
+      {showPdf && vistoria && <CreatePdf64 vistoria={vistoria} modulos={modulos} maquina={maq} onClose={onClose}/>}
     </>
   )
 }
