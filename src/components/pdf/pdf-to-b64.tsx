@@ -3,19 +3,21 @@ import { Box, Button, ChakraProvider } from '@chakra-ui/react'
 import html2pdf from 'html2pdf.js'
 import VistoriaView from '../modal/vistoria/vistoria-view'
 import { Vistoria } from '../interfaces/vistoria'
+import { ModuloDescricao } from '../interfaces/moduloDescricao'
 
 interface Props {
   vistoria: Vistoria
+  modulos: ModuloDescricao[]
 }
 
 
-const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria }, ref) => (
+const PdfContent = React.forwardRef<HTMLDivElement, Props>(({ vistoria, modulos }, ref) => (
   <Box ref={ref} padding="4" backgroundColor="white" textAlign='start'>
-    <VistoriaView vistoria={vistoria}/>
+    <VistoriaView vistoria={vistoria} modulos={modulos}/>
   </Box>
 ));
 
-const CreatePdf64: React.FC<Props> = ({ vistoria }) => {
+const CreatePdf64: React.FC<Props> = ({ vistoria, modulos }) => {
   const contentRef = React.useRef<HTMLDivElement>(null)
 
   const handleDownloadPdf = () => {
@@ -42,7 +44,7 @@ const CreatePdf64: React.FC<Props> = ({ vistoria }) => {
         <Button onClick={handleDownloadPdf} colorScheme="blue" marginBottom="4">
           Concluir Vistoria
         </Button>
-        <PdfContent vistoria={vistoria} ref={contentRef} />
+        <PdfContent vistoria={vistoria} ref={contentRef} modulos={modulos}/>
       </Box>
     </ChakraProvider>
   )

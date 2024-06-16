@@ -1,12 +1,15 @@
+import { ModuloDescricao } from "../../../interfaces/moduloDescricao";
 import { ModuloInspecao } from "../../../interfaces/moduloInspecao";
 import { Vistoria } from "../../../interfaces/vistoria";
 import { Text, Box, Grid, Flex  } from '@chakra-ui/react';
 
 interface ViewProps {
     vistoria: Vistoria
+    modulos: ModuloDescricao[]
 }
-function VistoriaView({ vistoria }: ViewProps) {
-
+function VistoriaView({ vistoria, modulos }: ViewProps) {
+    //console.log(vistoria.moduloInspecao)
+    //console.log(modulos)
     return (
         <Grid templateColumns="1fr" >
             
@@ -26,14 +29,14 @@ function VistoriaView({ vistoria }: ViewProps) {
 
             <Text>Descrição: {}</Text>
             <Flex justifyContent={""}>
-                <Box width="100%" paddingLeft={2} border="1px solid black" mb={2} >
+                <Box width="100%" border="1px solid black" mb={2} >
                     {vistoria.moduloInspecao.map(item =>(
-                        <>
-                            <Text key = {item.id}>Item: {item.moduloDescricao}</Text>
-                            <Text>{item.descricao}</Text>
+                        <Box padding={2} backgroundColor={item.status?'':'lightgray'}>
+                            <Text key = {item.id} fontSize={20} >Item: {modulos[item.moduloDescricao-1].titulo}</Text>
+                            <Text fontSize={15} >{item.descricao}</Text>
                             {item.imagem != ''&&(<img src={item.imagem}
                             alt='' height="200px" width="200px"/>)}
-                        </>
+                        </Box>
                     ))}
                 </Box>
             </Flex>
