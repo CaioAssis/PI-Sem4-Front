@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Box, Button, Checkbox, Divider, Text, Grid, GridItem } from '@chakra-ui/react'
 import { Maquina } from '../../../../interfaces/maquina'
 import ModalTextarea from '../../../modal-textarea'
