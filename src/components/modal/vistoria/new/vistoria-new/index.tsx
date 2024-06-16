@@ -127,7 +127,7 @@ export function VistoriaNew({ maq, onClose, modulos }: MaquinaProps) {
           <Button onClick={onClose}>Cancelar</Button>
         </GridItem>
       </Grid>
-      {showPdf && vistoria && <CreatePdf64 vistoria={vistoria} modulos={modulos} />}
+      {showPdf && vistoria && <CreatePdf64 vistoria={vistoria} modulos={modulos} maquina={maq}/>}
     </>
   )
 }
