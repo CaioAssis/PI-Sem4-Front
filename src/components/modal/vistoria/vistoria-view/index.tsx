@@ -1,3 +1,4 @@
+import { ModuloInspecao } from "../../../interfaces/moduloInspecao";
 import { Vistoria } from "../../../interfaces/vistoria";
 import { Text, Box, Grid, Flex  } from '@chakra-ui/react';
 

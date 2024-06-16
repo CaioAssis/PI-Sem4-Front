@@ -34,19 +34,19 @@ export default function VSearchMaq() {
         }
         const fetchMod = async () => {
             try {
-              const filtrados = await api.get('/modulo/get')
-              setGetModulos(filtrados.data)
+                const filtrados = await api.get('/modulo/get')
+                setGetModulos(filtrados.data)
             }
             catch (error) {
-              console.error("Erro ao buscar usuário", error)
+                console.error("Erro ao buscar usuário", error)
             }
-          }
-          fetchMaq()
-          fetchMod()
+        }
+        fetchMaq()
+        fetchMod()
     }
     useEffect(() => {
         atualizar()
-      }, [])
+    }, [])
 
     const [inputValue, setInputValue] = useState('')
     useEffect(() => {

@@ -30,7 +30,6 @@ export function CreateMaq({ onClose }: Props) {
       try{
     const filtrados = await api.get('/modulo/get')
     setModulos(filtrados.data)
-    setFiltro(filtrados.data)
       }
       catch(error)
       {
@@ -45,11 +44,8 @@ export function CreateMaq({ onClose }: Props) {
     atualizarModulos()
   }, [])
 
-
   const [descricao, setDescricao] = useState('');
   const [modulos, setModulos] = useState<ModuloDescricao[]>([]);
-
-  const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [adiciona, setAdiciona] = useState<ModuloDescricao[]>([]);
 
@@ -68,10 +64,6 @@ export function CreateMaq({ onClose }: Props) {
 
   function removeModulo(modulo: ModuloDescricao) {
     setAdiciona(adiciona.filter((item) => item.id !== modulo.id));
-  }
-
-  function teste(){
-    console.log(modulos)
   }
 
   return (
@@ -105,7 +97,7 @@ export function CreateMaq({ onClose }: Props) {
             border="1px solid"
             borderColor="gray.200"
           >
-            {filtro.map((modulo) => (
+            {modulos.map((modulo) => (
               <ModuloList
                 onClick={() => addModulo(modulo)}
                 key={modulo.id}
@@ -132,7 +124,7 @@ export function CreateMaq({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={2} justifySelf="end">
-          <Button onClick={teste}>Cancelar</Button>
+          <Button onClick={onClose}>Cancelar</Button>
         </GridItem>
       </Grid>
     </>

@@ -1,8 +1,7 @@
-import { Button, Flex, Text, Textarea, useDisclosure } from "@chakra-ui/react"
+import { Button, Flex, Textarea, useDisclosure } from "@chakra-ui/react"
 import ImagePopup from "./image-popup"
 import { useState } from "react"
 interface InputProps {
-    title: string
     placeholder: string
     defaultValue?: string
     ref?: string
@@ -10,7 +9,7 @@ interface InputProps {
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-function ModalTextarea({ title, placeholder, defaultValue, ref, imagem, onChange }: InputProps) {
+function ModalTextarea({ placeholder, defaultValue, ref, imagem, onChange }: InputProps) {
     const [popupImageUrl, setPopupImageUrl] = useState('')
 
     const { onOpen } = useDisclosure();
@@ -23,7 +22,6 @@ function ModalTextarea({ title, placeholder, defaultValue, ref, imagem, onChange
     return (
         <>
             <Flex align='start'>
-                <Text fontSize='20' marginRight='10px'>{title}</Text>
                 {imagem && (
                     <Button
                         size="xs"
