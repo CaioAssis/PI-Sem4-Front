@@ -1,12 +1,11 @@
 import { Box, Button, Text } from "@chakra-ui/react"
 import { Maquina } from "../../../../interfaces/maquina"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Vistoria } from "../../../../interfaces/vistoria"
-import MockVist from "../../../../mockup/mock-vist"
 import ModalButton from "../../../modal-button"
 import CreateModal from "../../../create-modal"
 import ShowPDF from "../../../../iframe-pdf"
-import VistoriaList from "../../vistoria-list"
+import api from "../../../../../helpers/axios"
 
 interface MaqProps {
     maq: Maquina
@@ -23,32 +22,40 @@ export default function VistMaqView({ maq }: MaqProps) {
 
     const [updateOpen, setUpdateOpen] = useState<number | null>(null)
     const [updateShow, setUpdateShow] = useState(false)
-    const [vistorias] = useState<Vistoria[]>(MockVist)
-    const [filtro, setFiltro] = useState<Vistoria[]>([])
+    const [vistorias, setVistorias] = useState<Vistoria[]>([])
+    //const [filtro, setFiltro] = useState<Vistoria[]>([])
 
-    const handleUpdateShow = () => {
+    const handleShow = async () => {
+        if(!updateShow){
+            try{
+           const listVist = await api.get(`/vistoria/getm/${maq.id}`)
+           //console.log(listVist.data)
+           setVistorias(listVist.data)
+        } catch (error) { console.error("Erro: ", error) }
+
+        }
         setUpdateShow(!updateShow);
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         setFiltro(vistorias.filter((item) => item.maquina === maq.id));
-    }, [vistorias, maq.id]);
+        console.log(vistorias.filter((item) => item.maquina === maq.id))
+    }, [vistorias, maq.id]);*/
 
     return (
         <>
             <Box w='80%' p={2} display='flex' gap={5} margin='5px'>
                 <Button w='100%' bg='lightgray' justifyContent='flex-start'
-                    onClick={handleUpdateShow}>
+                    onClick={handleShow}>
                     <Text alignContent=''>
                         {maq.descricao}
                     </Text>
                 </Button>
 
             </Box>
-            {updateShow && filtro.map((e) =>
+            {updateShow && vistorias.map((e) =>
                 <>
                     <Box>
-                        <VistoriaList vistoria={e}/>
                         <ModalButton label={e.data} onClick={() => handleOpenModalUpdate(e.id)} display="flex" justifyContent="flex-start" />
                     </Box>
                     <CreateModal label='Vistoria' isOpen={updateOpen === e.id} onClose={handleCloseModalUpdate}>

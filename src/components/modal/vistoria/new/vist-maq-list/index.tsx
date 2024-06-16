@@ -3,11 +3,13 @@ import { Maquina } from "../../../../interfaces/maquina"
 import CreateModal from "../../../create-modal"
 import { useState } from "react"
 import VistoriaNew from "../vistoria-new"
+import { ModuloDescricao } from "../../../../interfaces/moduloDescricao"
 
 interface MaqProps {
     maq: Maquina
+    modulos: ModuloDescricao[]
 }
-export default function VistMaqList({ maq }: MaqProps) {
+export default function VistMaqList({ maq, modulos }: MaqProps) {
 
 
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -28,7 +30,7 @@ export default function VistMaqList({ maq }: MaqProps) {
                 </Text>
             </Button>
             <CreateModal label='Criar Vistoria' isOpen={updateOpen} onClose={handleCloseModal}>
-                <VistoriaNew maq={maq} onClose={handleCloseModal}/>
+                <VistoriaNew maq={maq} onClose={handleCloseModal} modulos={modulos}/>
             </CreateModal>
         </Box>
     )

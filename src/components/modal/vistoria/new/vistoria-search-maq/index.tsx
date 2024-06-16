@@ -1,14 +1,52 @@
 import { Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Maquina } from "../../../../interfaces/maquina";
+import { Maquina, maquinaGet } from "../../../../interfaces/maquina";
 import VistMaqList from "../vist-maq-list";
-import MockMaquinas from "../../../../mockup/mock-maquina";
+import api from "../../../../../helpers/axios";
+import { ModuloDescricao } from "../../../../interfaces/moduloDescricao";
 
 export default function VSearchMaq() {
-    const [maquina] = useState<Maquina[]>(MockMaquinas)
+    const [maquina, setMaquina] = useState<Maquina[]>([])
     const [filtro, setFiltro] = useState<Maquina[]>([])
+    const [getModulos, setGetModulos] = useState<ModuloDescricao[]>([])
 
-
+    function atualizar() {
+        const fetchMaq = async () => {
+            try {
+                const response = await api.get('/maquina/get')
+                const maqGet: maquinaGet[] = response.data
+                setMaquina(maqGet.map(item => ({
+                    id: item.id,
+                    descricao: item.descricao,
+                    vistorias: item.vistorias.map(vistoria => vistoria.id),
+                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                })))
+                setFiltro((maqGet.map(item => ({
+                    id: item.id,
+                    descricao: item.descricao,
+                    vistorias: item.vistorias.map(vistoria => vistoria.id),
+                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                }))))
+            }
+            catch (error) {
+                console.error("Erro ao buscar usuário", error)
+            }
+        }
+        const fetchMod = async () => {
+            try {
+                const filtrados = await api.get('/modulo/get')
+                setGetModulos(filtrados.data)
+            }
+            catch (error) {
+                console.error("Erro ao buscar usuário", error)
+            }
+        }
+        fetchMaq()
+        fetchMod()
+    }
+    useEffect(() => {
+        atualizar()
+    }, [])
 
     const [inputValue, setInputValue] = useState('')
     useEffect(() => {
@@ -33,7 +71,7 @@ export default function VSearchMaq() {
                 placeholder='Digite o número do chassi' />
 
             {filtro.map((maq) => (
-                <VistMaqList key={maq.id} maq={maq} />
+                <VistMaqList key={maq.id} maq={maq} modulos={getModulos} />
             ))
             }
         </>

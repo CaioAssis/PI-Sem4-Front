@@ -14,7 +14,7 @@ export function UpdateMaq() {
   const [getModulos, setGetModulos] = useState<ModuloDescricao[]>([])
 
   function atualizar() {
-    const fetchUsers = async () => {
+    const fetchMaq = async () => {
       try {
         const response = await api.get('/maquina/get')
         const maqGet: maquinaGet[] = response.data
@@ -45,7 +45,7 @@ export function UpdateMaq() {
         console.error("Erro ao buscar usuário", error)
       }
     }
-    fetchUsers()
+    fetchMaq()
     fetchMod()
   }
 

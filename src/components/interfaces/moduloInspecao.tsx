@@ -3,5 +3,5 @@ export interface ModuloInspecao{
     status?: boolean
     descricao?: string
     imagem?: string
-    moduloDescricao?: number
+    moduloDescricao: number
 }

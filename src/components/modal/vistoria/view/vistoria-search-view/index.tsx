@@ -1,12 +1,40 @@
 import { Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Maquina, maquinaGet } from "../../../../interfaces/maquina";
 import VistMaqView from "../vist-maq-view";
-import { Maquina } from "../../../../interfaces/maquina";
-import MockMaquinas from "../../../../mockup/mock-maquina";
+import api from "../../../../../helpers/axios";
 
 export default function VSearchView() {
-    const [maquina] = useState<Maquina[]>(MockMaquinas)
+    const [maquina, setMaquina] = useState<Maquina[]>([])
     const [filtro, setFiltro] = useState<Maquina[]>([])
+
+    function atualizar() {
+        const fetchMaq = async () => {
+            try {
+                const response = await api.get('/maquina/get')
+                const maqGet: maquinaGet[] = response.data
+                setMaquina(maqGet.map(item => ({
+                    id: item.id,
+                    descricao: item.descricao,
+                    vistorias: item.vistorias.map(vistoria => vistoria.id),
+                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                })))
+                setFiltro((maqGet.map(item => ({
+                    id: item.id,
+                    descricao: item.descricao,
+                    vistorias: item.vistorias.map(vistoria => vistoria.id),
+                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                }))))
+            }
+            catch (error) {
+                console.error("Erro ao buscar usuário", error)
+            }
+        }
+        fetchMaq()
+    }
+    useEffect(() => {
+        atualizar()
+    }, [])
 
     const [inputValue, setInputValue] = useState('')
     useEffect(() => {
@@ -16,10 +44,10 @@ export default function VSearchView() {
         setFiltro(filtrados);
     }, [inputValue])
 
+
     return (
         <>
             <Input
-            h={'50px'}
                 type='text'
                 value={inputValue}
                 bg='white'
@@ -31,7 +59,7 @@ export default function VSearchView() {
                 placeholder='Digite o número do chassi' />
 
             {filtro.map((maq) => (
-                <VistMaqView key={maq.id} maq={maq} />
+                <VistMaqView key={maq.id} maq={maq}/>
             ))
             }
         </>
