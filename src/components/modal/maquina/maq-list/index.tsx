@@ -4,13 +4,15 @@ import CreateModal from "../../create-modal"
 import { useState } from "react"
 import UpdateMaqForm from "../update-maq-form"
 import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
+import { Cliente } from "../../../interfaces/cliente"
 
 interface MaqProps {
     maq: Maquina
     reload: () => void
     modulos: ModuloDescricao[]
+    clientes: Cliente[]
 }
-export default function MaqList({ maq, modulos, reload }: MaqProps) {
+export default function MaqList({ maq, modulos, reload, clientes }: MaqProps) {
 
 
     const [updateOpen, setUpdateOpen] = useState(false)
@@ -31,7 +33,7 @@ export default function MaqList({ maq, modulos, reload }: MaqProps) {
                 </Text>
             </Button>
             <CreateModal label='Editar Máquina' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
-                <UpdateMaqForm maq={maq} onClose={handleCloseModalUpdate} modulos={modulos} reload={reload}/>
+                <UpdateMaqForm maq={maq} onClose={handleCloseModalUpdate} modulos={modulos} reload={reload} clientes={clientes}/>
             </CreateModal>
         </Box>
     )
