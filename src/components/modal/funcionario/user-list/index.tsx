@@ -1,4 +1,4 @@
-import { Box, Button, Text } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 import { Funcionario } from "../../../interfaces/funcionario"
 import CreateModal from "../../create-modal"
 import { useState } from "react"
