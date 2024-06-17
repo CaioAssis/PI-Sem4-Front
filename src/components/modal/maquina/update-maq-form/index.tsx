@@ -17,6 +17,7 @@ interface MaquinaProps {
 
 export function UpdateClientForm({ maq, onClose, modulos, reload, clientes }: MaquinaProps) {
 
+    const [isLoading, setIsLoading] = useState(false)
     const [inputValue, setInputValue] = useState('');
     const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
 
@@ -34,6 +35,7 @@ export function UpdateClientForm({ maq, onClose, modulos, reload, clientes }: Ma
     function editMaq() {
         console.log(maq.cliente.id)
         if (formMaq.descricao != '' && !isNaN(formMaq.cliente)) {
+            setIsLoading(true)
             const updateMaq = {
                 descricao: formMaq.descricao,
                 modulos: adiciona ? adiciona : [],
@@ -139,7 +141,7 @@ export function UpdateClientForm({ maq, onClose, modulos, reload, clientes }: Ma
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf="end">
-                    <Button onClick={editMaq}>Atualizar Máquina</Button>
+                    <Button isLoading={isLoading} onClick={editMaq}>Atualizar Máquina</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf="end">

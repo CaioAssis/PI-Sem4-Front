@@ -15,6 +15,7 @@ export function UpdateModuloForm({ modulo, onClose, reload }: ModuloProps) {
 
     function editModulo() {
         if (titulo != '' && descricao != '') {
+            setIsLoading(true)
             const newModulo = {
                 titulo: titulo,
                 descricao: descricao,
@@ -34,6 +35,7 @@ export function UpdateModuloForm({ modulo, onClose, reload }: ModuloProps) {
         else alert('Os campos precisam estar preenchidos!')
     }
 
+    const [isLoading, setIsLoading] = useState(false)
     const [titulo, setTitulo] = useState(modulo.titulo)
     const [descricao, setDescricao] = useState(modulo.descricao)
     const [imagem, setImagem] = useState(modulo.imagem)
@@ -91,7 +93,7 @@ export function UpdateModuloForm({ modulo, onClose, reload }: ModuloProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editModulo}>Editar Módulo</Button>
+                    <Button isLoading={isLoading} onClick={editModulo}>Editar Módulo</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

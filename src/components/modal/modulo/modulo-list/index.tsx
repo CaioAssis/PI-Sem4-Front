@@ -21,13 +21,22 @@ export default function ModuloList({ modulo, reload }: ModuloProps) {
     }
 
     return (
-        <Box w='80%' p={2} display='flex' gap={5} margin='5px'>
-            <Button w='100%' bg='lightgray' justifyContent='flex-start'
+        <Box w='80%' p={2} display='flex' gap={5} >
+            <Box p={2}
+                display='flex'
+                gap={5}
+                w='100%'
+                bg='lightgray'
+                justifyContent='flex-start'
+                cursor="pointer"
+                border="1px solid"
+                borderColor="gray.200"
+                rounded={15} mb={2}
                 onClick={handleOpenModalUpdate}>
                 <Text alignContent=''>
-                    {modulo.titulo} - {modulo.descricao}
+                    {modulo.titulo}
                 </Text>
-            </Button>
+            </Box>
             <CreateModal label='Editar Módulo' isOpen={updateOpen} onClose={handleCloseModalUpdate}>
                 <UpdateModuloForm modulo={modulo} onClose={handleCloseModalUpdate} reload={reload} />
             </CreateModal>

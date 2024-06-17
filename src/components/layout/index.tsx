@@ -28,6 +28,7 @@ function Layout(props: Props) {
                     display={isHomePage ? 'none': 'block'}
                     maxHeight="80vh"
                     minHeight="80vh"
+                    maxWidth="100vh"
                     minWidth="100vh"
                     overflow="auto"
                     bg="rgba(0, 0, 0, 0.3)"

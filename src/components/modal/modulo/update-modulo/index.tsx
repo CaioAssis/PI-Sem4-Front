@@ -44,7 +44,8 @@ export function UpdateModulo() {
         type='text'
         value={inputValue}
         bg='white'
-        w='90%'
+        w='80%'
+        marginBottom={'15px'}
         onChange={
           (event) => {
             setInputValue(event.target.value);

@@ -19,13 +19,15 @@ export default function VSearchMaq() {
                     id: item.id,
                     descricao: item.descricao,
                     vistorias: item.vistorias.map(vistoria => vistoria.id),
-                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                    modulos: item.modulosDescricao.map(modulo => modulo.id),
+                    cliente: item.cliente
                 })))
                 setFiltro((maqGet.map(item => ({
                     id: item.id,
                     descricao: item.descricao,
                     vistorias: item.vistorias.map(vistoria => vistoria.id),
-                    modulos: item.modulosDescricao.map(modulo => modulo.id)
+                    modulos: item.modulosDescricao.map(modulo => modulo.id),
+                    cliente: item.cliente
                 }))))
             }
             catch (error) {

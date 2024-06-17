@@ -13,6 +13,7 @@ interface Props {
 export function CreateMaq({ onClose }: Props) {
   function addMaq() {
     if (descricao !== '' && idCliente !== '') {
+      setIsLoading(true)
       const newMaq = {
         descricao: descricao,
         modulos: adiciona ? adiciona : [],
@@ -47,6 +48,7 @@ export function CreateMaq({ onClose }: Props) {
     atualizarModulos()
   }, [])
 
+  const [isLoading, setIsLoading] = useState(false)
   const [descricao, setDescricao] = useState('')
   const [idCliente, setIdCliente] = useState('')
   const [modulos, setModulos] = useState<ModuloDescricao[]>([])
@@ -132,7 +134,7 @@ export function CreateMaq({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={3} justifySelf="end">
-          <Button onClick={addMaq}>Criar Máquina</Button>
+          <Button isLoading={isLoading} onClick={addMaq}>Criar Máquina</Button>
         </GridItem>
 
         <GridItem colSpan={2} justifySelf="end">

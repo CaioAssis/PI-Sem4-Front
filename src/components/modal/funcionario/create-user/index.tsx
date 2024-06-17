@@ -10,6 +10,7 @@ interface Props {
 export function CreateUser({ onClose }: Props) {
   function addUser() {
     if (userData.nome != '' && userData.matricula != '' && userData.contato != '' && userData.usuario != '' && userData.senha != '' && userData.role != '') {
+      setIsLoading(true)
       const newUser = {
         nome: userData.nome,
         matricula: userData.matricula,
@@ -26,6 +27,7 @@ export function CreateUser({ onClose }: Props) {
     }
     else alert('Os campos precisam estar preenchidos!')
   }
+  const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState({
     nome: '',
     matricula: '',
@@ -88,7 +90,7 @@ export function CreateUser({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={3} justifySelf='end'>
-          <Button onClick={addUser}>Criar Usuário</Button>
+          <Button isLoading={isLoading} onClick={addUser}>Criar Usuário</Button>
         </GridItem>
 
         <GridItem colSpan={2} justifySelf='end'>
