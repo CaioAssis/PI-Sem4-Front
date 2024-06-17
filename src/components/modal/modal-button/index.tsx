@@ -5,11 +5,17 @@ interface BotaoProps {
   onClick: () => void
   display?: string
   justifyContent?: string
+  bg?: string
 }
 
-export function ModalButton({ label, display, justifyContent, onClick }: BotaoProps) {
+export function ModalButton({ label, display, justifyContent, onClick, bg }: BotaoProps) {
   return (
-    <Button onClick={onClick} bg="#EDEBEB" margin={5} display={display} justifyContent={justifyContent}>
+    <Button 
+    onClick={onClick} 
+    bg={bg?bg:"#EDEBEB"} 
+    margin={5} 
+    display={display} 
+    justifyContent={justifyContent}>
       {label}
     </Button>
   );
