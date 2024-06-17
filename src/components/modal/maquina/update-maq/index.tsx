@@ -4,12 +4,14 @@ import { useEffect, useState } from "react"
 import { Maquina, maquinaGet } from "../../../interfaces/maquina"
 import api from "../../../../helpers/axios"
 import { ModuloDescricao } from "../../../interfaces/moduloDescricao"
+import { Cliente } from "../../../interfaces/cliente"
 
 
 export function UpdateMaq() {
 
   const [maquina, setMaquina] = useState<Maquina[]>([])
   const [filtro, setFiltro] = useState<Maquina[]>([])
+  const [cliente, setCliente] = useState<Cliente[]>([])
   const [inputValue, setInputValue] = useState('')
   const [getModulos, setGetModulos] = useState<ModuloDescricao[]>([])
 
@@ -22,13 +24,17 @@ export function UpdateMaq() {
           id: item.id,
           descricao: item.descricao,
           vistorias: [],
-          modulos: item.modulosDescricao.map(modulo => modulo.id)
+          modulos: item.modulosDescricao.map(modulo => modulo.id),
+          cliente: item.cliente
         })))
+        const cli = await api.get('/cliente/get')
+        setCliente(cli.data)
         setFiltro((maqGet.map(item => ({
           id: item.id,
           descricao: item.descricao,
           vistorias: [],
-          modulos: item.modulosDescricao.map(modulo => modulo.id)
+          modulos: item.modulosDescricao.map(modulo => modulo.id),
+          cliente: item.cliente
         }))))
       }
       catch (error) {
@@ -73,7 +79,7 @@ export function UpdateMaq() {
         placeholder='Digite o número do chassi' />
 
       {filtro.map((maq) => (
-        <MaqList key={maq.id} maq={maq} reload={atualizar} modulos={getModulos} />
+        <MaqList key={maq.id} maq={maq} reload={atualizar} modulos={getModulos} clientes={cliente}/>
       ))
       }
     </>

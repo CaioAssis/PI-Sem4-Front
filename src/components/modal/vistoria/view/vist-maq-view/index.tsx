@@ -56,7 +56,7 @@ export default function VistMaqView({ maq }: MaqProps) {
             {updateShow && vistorias.map((e) =>
                 <>
                     <Box>
-                        <ModalButton label={e.data} onClick={() => handleOpenModalUpdate(e.id)} display="flex" justifyContent="flex-start" />
+                        <ModalButton bg={e.status=='OK'?'lightgreen':"#EDEBEB"} label={e.data} onClick={() => handleOpenModalUpdate(e.id)} display="flex" justifyContent="flex-start" />
                     </Box>
                     <CreateModal label='Vistoria' isOpen={updateOpen === e.id} onClose={handleCloseModalUpdate}>
                         <ShowPDF url={e.anexo} onClose={handleCloseModalUpdate} />

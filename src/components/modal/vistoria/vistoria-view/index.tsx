@@ -9,6 +9,7 @@ interface ViewProps {
     maquina: Maquina
 }
 function VistoriaView({ vistoria, modulos, maquina }: ViewProps) {
+    //console.log(maquina)
     return (
         <Grid templateColumns="1fr" >
 
@@ -18,14 +19,14 @@ function VistoriaView({ vistoria, modulos, maquina }: ViewProps) {
             </Flex>
 
             <Text>Dados: { }</Text>
-            <Flex paddingLeft={2} justifyContent="space-between" wrap={"wrap"} flex="1" border="1px solid black" mb={2} >
+            <Flex padding={2} paddingTop={0} paddingBottom={4} marginTop={2} justifyContent="space-between" wrap={"wrap"} flex="1" border="1px solid black" mb={2} >
                 <Box>
                 <Text>Maquina:  {maquina.descricao}</Text>
                 <Text>Data: {vistoria.data}</Text>
                 </Box>
                 <Spacer/>
                 <Box>
-                <Text>Cliente: </Text>
+                <Text>Cliente: {maquina.cliente.nome}</Text>
                 <Text>Responsavel: </Text>
                 </Box>
                 <Spacer/>
@@ -33,12 +34,12 @@ function VistoriaView({ vistoria, modulos, maquina }: ViewProps) {
             
 
             <Text>Descrição: {vistoria.status==='OK'? 'Máquina aprovada':'Alteração encontrada' }</Text>
-            <Flex justifyContent={""}>
-                <Box width="100%" border="1px solid black" mb={2} >
+            <Flex marginTop={2} justifyContent={""}>
+                <Box padding={2} paddingTop={0} paddingBottom={4} width="100%" border="1px solid black" mb={2} >
                     {vistoria.moduloInspecao.map(item => (
                         <Box padding={2} backgroundColor={item.status ? '' : 'lightgray'}>
                             <Text key={item.id} fontSize={20} >Item: {modulos[item.moduloDescricao - 1].titulo}</Text>
-                            <Text fontSize={15} >{item.descricao}</Text>
+                            <Text fontSize={15} marginBottom={2}>{item.descricao}</Text>
                             {item.imagem != '' && (<img src={item.imagem}
                                 alt='' height="200px" width="200px" />)}
                         </Box>

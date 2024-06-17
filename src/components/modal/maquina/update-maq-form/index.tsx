@@ -1,20 +1,23 @@
-import { Box, Button, Divider, Grid, GridItem, Input } from '@chakra-ui/react';
+import { Box, Button, Divider, Grid, GridItem, Input, Select } from '@chakra-ui/react';
 import ModalInput from '../../modal-input';
 import { Maquina } from '../../../interfaces/maquina';
 import { useEffect, useState } from 'react';
 import ModuloList from '../modulo-list';
 import { ModuloDescricao } from '../../../interfaces/moduloDescricao';
 import api from '../../../../helpers/axios';
+import { Cliente } from '../../../interfaces/cliente';
 
 interface MaquinaProps {
     maq: Maquina
     onClose: () => void
     modulos: ModuloDescricao[]
     reload: () => void
+    clientes: Cliente[]
 }
 
-export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps) {
+export function UpdateClientForm({ maq, onClose, modulos, reload, clientes }: MaquinaProps) {
 
+    const [isLoading, setIsLoading] = useState(false)
     const [inputValue, setInputValue] = useState('');
     const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
 
@@ -30,13 +33,16 @@ export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps
     //const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(modulos.filter((item) => maq.modulos.includes(item.id)))
     const [adiciona, setAdiciona] = useState<ModuloDescricao[]>(createModuloFromNumbers(maq.modulos))
     function editMaq() {
-        if (maq.descricao != '') {
+        console.log(maq.cliente.id)
+        if (formMaq.descricao != '' && !isNaN(formMaq.cliente)) {
+            setIsLoading(true)
             const updateMaq = {
                 descricao: formMaq.descricao,
-                modulos: adiciona ? adiciona : []
-            }
+                modulos: adiciona ? adiciona : [],
+                cliente: formMaq.cliente
 
-            console.log(updateMaq)
+            }
+            //console.log(updateMaq)
             api.put(`/maquina/update/${maq.id}`, updateMaq)
                 .then(() => {
                     onClose()
@@ -51,7 +57,8 @@ export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps
     const [formMaq, setFormMaq] = useState({
         id: maq.id,
         descricao: maq.descricao,
-        modulos: maq.modulos
+        modulos: maq.modulos,
+        cliente: maq.cliente.id
     })
 
     useEffect(() => {
@@ -114,6 +121,14 @@ export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps
                 </GridItem>
 
                 <GridItem colSpan={3}>
+                    <Select
+                        placeholder={maq.cliente.nome + ' - ' + maq.cliente.cpf}
+                        defaultValue={Number(maq.cliente)}
+                        onChange={(evento) => setFormMaq({ ...formMaq, cliente: Number(evento.target.value) })} >
+                        {clientes && clientes.map((item) => (
+                            <option value={item.id}>{item.nome} - {item.cpf}</option>
+                        ))}
+                    </Select>
                     <Box rounded={15} marginTop="10px" maxH="350px" overflowY="scroll">
                         {adiciona.map((modulo) => (
                             <ModuloList onClick={() => removeModulo(modulo)} key={modulo.id} modulo={modulo} />
@@ -126,7 +141,7 @@ export function UpdateClientForm({ maq, onClose, modulos, reload }: MaquinaProps
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf="end">
-                    <Button onClick={editMaq}>Atualizar Máquina</Button>
+                    <Button isLoading={isLoading} onClick={editMaq}>Atualizar Máquina</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf="end">

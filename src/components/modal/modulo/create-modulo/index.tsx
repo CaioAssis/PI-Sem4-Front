@@ -9,6 +9,8 @@ interface Props {
 }
 
 export function CreateModulo({ onClose }: Props) {
+
+  const [isLoading, setIsLoading] = useState(false)
   const [titulo, setTitulo] = useState('')
   const [descricao, setDescricao] = useState('')
   const [imagem, setImagem] = useState('')
@@ -32,6 +34,7 @@ export function CreateModulo({ onClose }: Props) {
 
   function addModulo() {
     if (titulo !== '' && descricao !== '') {
+      setIsLoading(true)
       const newModulo = {
         titulo: titulo,
         descricao: descricao,
@@ -80,7 +83,7 @@ export function CreateModulo({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={3} justifySelf='end'>
-          <Button onClick={addModulo}>Criar Módulo</Button>
+          <Button isLoading={isLoading} onClick={addModulo}>Criar Módulo</Button>
         </GridItem>
 
         <GridItem colSpan={2} justifySelf='end'>

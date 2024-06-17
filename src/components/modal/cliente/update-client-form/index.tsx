@@ -14,6 +14,7 @@ export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
 
     function editClient() {
         if (nome != '' && cpf != '' && contato != '') {
+            setIsLoading(true)
             const newClient = {
                 nome: nome,
                 cpf: cpf,
@@ -33,6 +34,7 @@ export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
         else alert('Os campos precisam estar preenchidos!')
     }
 
+    const [isLoading, setIsLoading] = useState(false)
     const [nome, setNome] = useState(client.nome)
     const [cpf, setCpf] = useState(client.cpf)
     const [contato, setContato] = useState(client.contato)
@@ -70,7 +72,7 @@ export function UpdateClientForm({ client, onClose, reload }: ClientProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editClient}>Editar Cliente</Button>
+                    <Button isLoading={isLoading} onClick={editClient}>Editar Cliente</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>

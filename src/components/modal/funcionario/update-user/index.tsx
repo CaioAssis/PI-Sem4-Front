@@ -48,6 +48,7 @@ export function UpdateUser() {
       value={inputValue}
       bg='white'
       w='80%'
+      marginBottom='15px'
       onChange={
         (event) => {
         setInputValue(event.target.value);

@@ -10,6 +10,7 @@ interface Props {
 export function CreateClient({ onClose }: Props) {
   function addClient() {
     if (nome != '' && cpf != '' && contato != '') {
+      setIsLoading(true)
       const newClient = {
         nome: nome,
         cpf: cpf,
@@ -23,6 +24,7 @@ export function CreateClient({ onClose }: Props) {
     else alert('Os campos precisam estar preenchidos!')
   }
 
+  const [isLoading, setIsLoading] = useState(false)
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState('')
   const [contato, setContato] = useState('')
@@ -57,7 +59,7 @@ export function CreateClient({ onClose }: Props) {
         </GridItem>
 
         <GridItem colSpan={3} justifySelf='end'>
-          <Button onClick={addClient}>Criar Cliente</Button>
+          <Button isLoading={isLoading} onClick={addClient}>Criar Cliente</Button>
         </GridItem>
 
         <GridItem colSpan={2} justifySelf='end'>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Button, ChakraProvider } from '@chakra-ui/react'
 import html2pdf from 'html2pdf.js'
 import VistoriaView from '../modal/vistoria/vistoria-view'
@@ -28,14 +28,15 @@ const PdfContent = React.forwardRef<HTMLDivElement, Props2>(({ vistoria, modulos
 
 const CreatePdf64: React.FC<Props> = ({ vistoria, modulos, maquina, onClose }) => {
   const contentRef = React.useRef<HTMLDivElement>(null)
-
+  const [isLoading, setIsLoading] = useState(false)
   const handleSave = () => {
     if (contentRef.current) {
+      setIsLoading(true)
       html2pdf()
         .from(contentRef.current)
         .set({
           filename: 'documento.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
+          image: { type: 'jpeg', quality: 1 },
           html2canvas: { scale: 2, useCORS: true },
           jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         })
@@ -66,7 +67,7 @@ const CreatePdf64: React.FC<Props> = ({ vistoria, modulos, maquina, onClose }) =
   return (
     <ChakraProvider>
       <Box padding="4" backgroundColor="gray.100" minHeight="100vh">
-        <Button onClick={handleSave} colorScheme="green" marginBottom="4">
+        <Button isLoading={isLoading} onClick={handleSave} colorScheme="green" marginBottom="4">
           Concluir Vistoria
         </Button>
         <PdfContent vistoria={vistoria} ref={contentRef} modulos={modulos} maquina={maquina} />

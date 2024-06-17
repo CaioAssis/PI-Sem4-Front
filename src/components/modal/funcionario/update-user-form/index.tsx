@@ -14,6 +14,7 @@ export function UpdateUserForm({ user, onClose, reload }: UserProps) {
 
     function editUser() {
         if (userData.nome != '' && userData.matricula != '' && userData.contato != '' && userData.usuario != '' && userData.senha != '' && userData.role != '') {
+            setIsLoading(true)
             const newUser = {
                 nome: userData.nome,
                 matricula: userData.matricula,
@@ -33,6 +34,7 @@ export function UpdateUserForm({ user, onClose, reload }: UserProps) {
         else alert('Os campos precisam estar preenchidos!')
     }
 
+    const [isLoading, setIsLoading] = useState(false)
     const [userData, setUserData] = useState({
         nome:user.nome,
         matricula: user.matricula,
@@ -100,7 +102,7 @@ export function UpdateUserForm({ user, onClose, reload }: UserProps) {
                 </GridItem>
 
                 <GridItem colSpan={3} justifySelf='end'>
-                    <Button onClick={editUser}>Editar Usuário</Button>
+                    <Button isLoading={isLoading} onClick={editUser}>Editar Usuário</Button>
                 </GridItem>
 
                 <GridItem colSpan={2} justifySelf='end'>
