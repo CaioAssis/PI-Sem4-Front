@@ -20,7 +20,7 @@ function Layout(props: Props) {
                 justifyContent="center"
                 backgroundSize={"cover"}
                 backgroundRepeat="no-repeat"
-                minHeight="100vmin"
+                minHeight="100vh"
                 minWidth="100vmin"
                 backgroundImage="url(https://www.deere.com.br/assets/images/region-3/products/harvesters/s-series/s760/r3g002593_colheitadeira_s760_campo_1_large_f312bb1da719e1a7196373ce1c8c6b7bd3cc165e.jpg)"
             >
@@ -28,8 +28,8 @@ function Layout(props: Props) {
                     display={isHomePage ? 'none': 'block'}
                     maxHeight="80vmin"
                     minHeight="80vmin"
-                    maxWidth="90vmin"
-                    minWidth="90vmin"
+                    maxWidth="100vmin"
+                    minWidth="100vmin"
                     overflow="auto"
                     bg="rgba(0, 0, 0, 0.3)"
                     boxShadow={'0px 0px 7px 1px rgba(0,0,0,0.75)'}

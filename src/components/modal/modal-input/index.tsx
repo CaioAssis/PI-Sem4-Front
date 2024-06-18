@@ -6,13 +6,15 @@ interface InputProps{
     defaultValue?: string
     ref?: string
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    type?: string
 }
 
-function ModalInput({ title, placeholder, defaultValue, ref, onChange}: InputProps){
+function ModalInput({ title, placeholder, defaultValue, ref, onChange, type}: InputProps){
     return(
         <>
             <Text fontSize='20'>{title}</Text>
             <Input 
+            type={type?type:'text'}
             rounded={15}
             bg='white' 
             placeholder={placeholder}
