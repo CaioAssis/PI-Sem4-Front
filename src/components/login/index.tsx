@@ -4,7 +4,6 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Checkbox,
     Stack,
     Link,
     Button,
@@ -45,13 +44,6 @@ import {
                 <Input type="password" />
               </FormControl>
               <Stack spacing={10}>
-                <Stack
-                  direction={{ base: 'column', sm: 'row' }}
-                  align={'start'}
-                  justify={'space-between'}>
-                  <Checkbox>Lembre-me</Checkbox>
-                  <Link color={'yellow.400'}>Forgot password?</Link>
-                </Stack>
                 <Button
                   bg={'yellow.400'}
                   color={'white'}
