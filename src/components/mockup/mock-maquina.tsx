@@ -1,4 +1,4 @@
-import { Maquina } from "../interfaces/maquina";
+/*import { Maquina } from "../interfaces/maquina";
 
 
 const MockMaquinas: Maquina[] = [
@@ -9,4 +9,4 @@ const MockMaquinas: Maquina[] = [
     { id: 5, descricao: '100005', modulos: [1, 4], vistorias: [] }
 ]
 
-export default MockMaquinas
+export default MockMaquinas*/
