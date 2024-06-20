@@ -75,6 +75,7 @@ export function CreateUser({ onClose }: Props) {
           <ModalInput
             title='Senha'
             placeholder='Senha do Funcionário'
+            type='password'
             onChange={(evento) => setUserData({...userData, senha: evento.target.value})} />
         </GridItem>
 
