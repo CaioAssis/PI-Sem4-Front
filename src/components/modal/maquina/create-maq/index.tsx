@@ -55,13 +55,14 @@ export function CreateMaq({ onClose }: Props) {
   const [cliente, setCliente] = useState<Cliente[]>([])
   const [inputValue, setInputValue] = useState('')
   const [adiciona, setAdiciona] = useState<ModuloDescricao[]>([])
+  const [filtro, setFiltro] = useState<ModuloDescricao[]>([]);
 
-  /* useEffect(() => {
+  useEffect(() => {
      const filtrados = modulos.filter((item) =>
        item.titulo.toLowerCase().includes(inputValue.toLowerCase())
      )
      setFiltro(filtrados)
-   }, [inputValue, modulos])*/
+   }, [inputValue, modulos])
 
   function addModulo(modulo: ModuloDescricao) {
     if (!adiciona.some((item) => item.id === modulo.id)) {
@@ -104,7 +105,7 @@ export function CreateMaq({ onClose }: Props) {
             border="1px solid"
             borderColor="gray.200"
           >
-            {modulos.map((modulo) => (
+            {filtro.map((modulo) => (
               <ModuloList
                 onClick={() => addModulo(modulo)}
                 key={modulo.id}
