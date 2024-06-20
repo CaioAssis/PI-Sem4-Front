@@ -1,4 +1,4 @@
-import { ModuloDescricao } from "../interfaces/moduloDescricao";
+/*import { ModuloDescricao } from "../interfaces/moduloDescricao";
 import ImageExample from "./img-example";
 
 const MockModulos: ModuloDescricao[] = [
@@ -8,4 +8,4 @@ const MockModulos: ModuloDescricao[] = [
     { id: 4, titulo: 'Conferir esteiras', descricao: 'Procurar defeitos nas esteiras da máquina', imagem: '' },
     { id: 5, titulo: 'Conferir rodas', descricao: 'Procurar defeiros nas rodas das máquinas', imagem: '' },
   ];
-export default MockModulos
+export default MockModulos*/

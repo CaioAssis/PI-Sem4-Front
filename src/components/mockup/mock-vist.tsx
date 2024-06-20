@@ -1,4 +1,4 @@
-import { Vistoria } from "../interfaces/vistoria";
+/*import { Vistoria } from "../interfaces/vistoria";
 import ImageExample from "./img-example";
 import PDFEXample from "./img-examplecopy";
 
@@ -39,4 +39,4 @@ const MockVist: Vistoria[] = [
         { id: 3, status: true, descricao: '', imagem: '', moduloDescricao: 3 }]
 }
   ];
-export default MockVist
+export default MockVist*/
